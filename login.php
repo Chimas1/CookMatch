@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$pdo = new PDO('mysql:host=localhost;dbname=test', 'root', '');
+require_once 'db_connect.php';
  
 if(isset($_GET['login'])) {
     $email = $_POST['email'];
