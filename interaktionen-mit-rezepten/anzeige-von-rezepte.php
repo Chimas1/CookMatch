@@ -24,11 +24,11 @@ if ($conn->connect_error) {
 $sql = "SELECT * FROM  Rezept"; 
 
 $result = $conn->query($sql); 
-  
+
 if ($result->num_rows > 0) { 
 
-    // ausgabe der daten pro zeile
-  
+// ausgabe der daten pro zeile
+
     while($row = $result->fetch_assoc()) { 
 
         echo "id: ".$row["id"]." - Name : ".$row["Name"]."<br>"; 
