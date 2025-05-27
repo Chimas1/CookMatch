@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$pdo = new PDO('mysql:host=localhost;dbname=CookMatch', 'CookMatch', 'SBScookmatch');
+require_once 'db_connect.php';
 ?>
 <!DOCTYPE html> 
 <html> 
