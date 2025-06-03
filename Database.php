@@ -40,7 +40,8 @@ function query($query_string)
           $stmt->bind_param($binder, ...$value);
         else
           $stmt->bind_param($binder, $value);
-        return $stmt->execute();
+        $stmt->execute();
+    return $stmt->get_result();
   }
 
 function disconnect()
