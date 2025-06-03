@@ -57,7 +57,7 @@ if(isset($_GET['register'])) {
         $stmt->close();
 
     }
-}
+
 }
  
 if($showFormular) {
