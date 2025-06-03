@@ -1,13 +1,14 @@
 <?php 
 session_start();
-require_once 'db_connect.php';
+require_once 'Database.php';
  
 if(isset($_GET['login'])) {
     $email = $_POST['email'];
     $passwort = $_POST['passwort'];
     
-    $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
-    $result = $statement->execute(array('email' => $email));
+    // $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
+   // $result = $statement->execute(array('email' => $email));
+    $result = $db->preparedStm("SELECT * FROM Nutzer WHERE email = :email", "s", $email);
     $user = $statement->fetch();
         
     //Überprüfung des Passworts
