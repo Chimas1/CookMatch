@@ -68,8 +68,6 @@ if(isset($_GET['register'])) {
             echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
         }
  
-        $result->close();
-
     }
 
 }
