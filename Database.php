@@ -1,9 +1,9 @@
 <?php
 class Database {
-$servername; 
-$username; 
-$password; 
-$dbname; 
+private $servername; 
+private $username; 
+private $password; 
+private $dbname; 
 
 $conn;
 
