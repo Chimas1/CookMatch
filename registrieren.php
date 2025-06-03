@@ -39,7 +39,7 @@ if(isset($_GET['register'])) {
         $user = $result->fetch_assoc();
  
         if($user !== null) {
-            die 'Diese E-Mail-Adresse ist bereits vergeben<br>';
+            die ("Diese E-Mail-Adresse ist bereits vergeben<br>");
             $error = true;
         }
 
