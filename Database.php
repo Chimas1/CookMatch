@@ -36,7 +36,7 @@ function query($query_string)
   function preparedStm($query_string, $binder, $value)
   {
         $stmt = $this->conn->prepare($query_string);
-        if(is_array($value)
+        if(is_array($value))
           $stmt->bind_param($binder, ...$value);
         else
           $stmt->bind_param($binder, $value);
