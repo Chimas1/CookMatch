@@ -14,7 +14,7 @@ $showFormular = true; //Variable ob das Registrierungsformular anezeigt werden s
  
 if(isset($_GET['register'])) {
   
-    $benutzername = $_POST['Benutzername'];
+    $benutzername = $_POST['benutzername'];
     $error = false;
     $email = $_POST['email'];
     $passwort = $_POST['passwort'];
