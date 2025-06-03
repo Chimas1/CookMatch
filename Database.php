@@ -33,6 +33,14 @@ function query($query_string)
     $this->conn->query($query_string);
   }
 
+  function preparedStm($query_string, $binder, $value)
+  {
+        $stmt = $conn->prepare($query_string);
+        $stmt->bind_param($binder, $value);
+        $stmt->execute();
+        return $stmt->get_result();
+  }
+
 function disconnect()
   {
     // Conection schließen
