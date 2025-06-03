@@ -21,8 +21,8 @@ function connect()
     $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname); 
     
 
-    if ($conn->connect_error) { 
-        die("Connection failed: " . $conn->connect_error); 
+    if ( $this->conn->connect_error) { 
+        die("Connection failed: " .  $this->conn->connect_error); 
     }
 
     //return $this->conn;
