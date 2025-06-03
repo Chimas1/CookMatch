@@ -31,32 +31,40 @@ if(isset($_GET['register'])) {
         $error = true;
     }
     
-    //Überprüfe, dass die E-Mail-Adresse noch nicht registriert wurde
-    if(!$error) { 
-        $statement = $pdo->prepare("SELECT * FROM Nutzer WHERE E-Mail = :email");
-        $result = $statement->execute(array('email' => $email));
-        $user = $statement->fetch();
-        
-        if($user !== false) {
+        // Überprüfen, ob E-Mail schon existiert
+    if(!$error) {
+        $stmt = $conn->prepare("SELECT * FROM Nutzer WHERE `E-Mail` = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+ 
+        if($user !== null) {
             echo 'Diese E-Mail-Adresse ist bereits vergeben<br>';
             $error = true;
-        }    
+        }
+ 
+        $stmt->close();
     }
     
-    //Keine Fehler, wir können den Nutzer registrieren
-    if(!$error) {    
+        // Wenn keine Fehler, neuen Nutzer eintragen
+    if(!$error) {
         $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
-        
-        $statement = $pdo->prepare("INSERT INTO Nutzer (E-Mail, Passwort) VALUES (:email, :passwort)");
-        $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash));
-        
-        if($result) {        
+ 
+        $stmt = $conn->prepare("INSERT INTO Nutzer (`E-Mail`, Passwort) VALUES (?, ?)");
+        $stmt->bind_param("ss", $email, $passwort_hash);
+        $result = $stmt->execute();
+ 
+        if($result) {
             echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
             $showFormular = false;
         } else {
             echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
         }
-    } 
+ 
+        $stmt->close();
+    }
+}
 }
  
 if($showFormular) {
