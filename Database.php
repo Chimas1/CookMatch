@@ -5,7 +5,7 @@ private $username;
 private $password; 
 private $dbname; 
 
-$conn;
+private $conn;
 
 function __construct()
   {
