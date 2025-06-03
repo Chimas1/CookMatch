@@ -33,27 +33,19 @@ if(isset($_GET['register'])) {
     
         // Überprüfen, ob E-Mail schon existiert
     if(!$error) {
-        $stmt = $conn->prepare("SELECT * FROM Nutzer WHERE `E-Mail` = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
+      $db = new Database();
+      $db->connect();
+      $result = $db->preparedStm("SELECT * FROM Nutzer WHERE `E-Mail` = ?", "s", $email);
         $user = $result->fetch_assoc();
  
         if($user !== null) {
-            echo 'Diese E-Mail-Adresse ist bereits vergeben<br>';
+            die 'Diese E-Mail-Adresse ist bereits vergeben<br>';
             $error = true;
         }
+
+      $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
  
-        $stmt->close();
-    }
-    
-        // Wenn keine Fehler, neuen Nutzer eintragen
-    if(!$error) {
-        $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
- 
-        $stmt = $conn->prepare("INSERT INTO Nutzer (`E-Mail`, Passwort) VALUES (?, ?)");
-        $stmt->bind_param("ss", $email, $passwort_hash);
-        $result = $stmt->execute();
+        $result = $db->preparedStm("INSERT INTO Nutzer (`E-Mail`, Passwort) VALUES (?, ?)", "ss", [$email, $passwort_hash]);
  
         if($result) {
             echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
@@ -63,6 +55,7 @@ if(isset($_GET['register'])) {
         }
  
         $stmt->close();
+
     }
 }
 }
