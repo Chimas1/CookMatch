@@ -63,7 +63,7 @@ if(isset($_GET['register'])) {
       echo "<pre>"; 
       print_r($result, true);
        echo "</pre>"; 
-        if($result) {
+        if(!$result) {
             echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
             $showFormular = false;
         } else {
