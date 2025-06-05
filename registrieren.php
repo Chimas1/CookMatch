@@ -60,9 +60,7 @@ if(isset($_GET['register'])) {
       $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
  
         $result = $db->preparedStm("INSERT INTO Nutzer (Benutzername, `E-Mail`, Passwort) VALUES (?, ?, ?)", "sss", [$benutzername, $email, $passwort_hash]);
-      echo "<pre>"; 
-      print_r($result, true);
-       echo "</pre>"; 
+     // result ist leer, da es kein True zurückgibt in der Funktion, Database verändern
         if($result) {
             echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
             $showFormular = false;
