@@ -4,40 +4,24 @@
 
  require_once 'Database.php';
 
-//Ausgabe von Rezepten
+// Primärschlüssel aus z. B. URL holen
+$id = intval($_GET['id']); // immer validieren!
 
-$sql = "SELECT * FROM  Rezept"; 
+// SQL-Abfrage vorbereiten
+$sql = "SELECT * FROM rezepte WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$result = $stmt->get_result();
 
-$result = $conn->query($sql); 
-
-if ($result->num_rows > 0) { 
-
-// ausgabe der daten pro zeile
-
-    while($row = $result->fetch_assoc()) { 
-
-        echo "id: ".$row["id"]." - Name : ".$row["Name"]."<br>"; 
-        echo "id: ".$row["id"]." - Herkunft : ".$row["Herkunft"]."<br>"; 
-        echo "id: ".$row["id"]." - Gang: ".$row["Gang"]."<br>"; 
-        echo "id: ".$row["id"]." - Schwierigkeit: ".$row[" Schwierigkeit"]."<br>"; 
-        echo "id: ".$row["id"]." - Ernährungsweise: ".$row["Ernährungsweise"]."<br>";
-    } 
-
-} else { 
-
-    echo "0 results"; 
-
-} 
-
-//Ausgabe der passenden Zutaten
-
-//Ausgabe der passenden Kochutensilien 
-
-// Ausgabe passender Zeit 
-
-// Ausgabe passender Anweisungen 
-
-// Ausgabe passender Bewertungen 
+// Datensatz ausgeben
+if ($row = $result->fetch_assoc()) {
+    echo "Rezeptname: " . htmlspecialchars($row['name']) . "<br>";
+    echo "Beschreibung: " . htmlspecialchars($row['beschreibung']) . "<br>";
+    // Weitere Felder...
+} else {
+    echo "Kein Rezept gefunden.";
+}
 
 
 
