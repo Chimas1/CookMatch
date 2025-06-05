@@ -1,23 +1,8 @@
 <?php
 
-  $servername = "localhost"; 
-
-$username = "CookMatch"; 
-
-$password = "SBScookmatch"; 
-
-$dbname = "CookMatch"; 
-
 // Conection herstellen
 
-$conn = new mysqli($servername, $username, $password, $dbname); 
-
-// Conection prüfen 
-
-if ($conn->connect_error) { 
-
-    die("Connection failed: " . $conn->connect_error); 
-}
+ require_once 'Database.php';
 
 //Ausgabe von Rezepten
 
