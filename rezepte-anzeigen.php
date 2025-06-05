@@ -8,11 +8,10 @@
 $id = intval($_GET['id']); // immer validieren!
 
 // SQL-Abfrage vorbereiten
-$sql = "SELECT * FROM rezepte WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $id);
-$stmt->execute();
-$result = $stmt->get_result();
+$db = new Database();
+$db->connect();
+$result = $db->preparedStm("SELECT * FROM rezepte WHERE id = ?", "i", $id);
+$result = $result->fetch_assoc();
 
 // Datensatz ausgeben
 if ($row = $result->fetch_assoc()) {
