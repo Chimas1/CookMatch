@@ -43,7 +43,7 @@ if(isset($_GET['register'])) {
         if($result !== null) {
             die ("Diese E-Mail-Adresse ist bereits vergeben <br> <a href='login.php'>Zum Login</a>");
             $error = true;
-          
+          $db-> disconnect();
           
         }
 
@@ -54,6 +54,8 @@ if(isset($_GET['register'])) {
         if($result !== null) {
             die ("Dieser Benutzername ist bereits vergeben <br> <a href='registrieren.php'>Nochmal versuchen</a>");
             $error = true;
+            $db-> disconnect();
+
         }
 
 
@@ -63,6 +65,8 @@ if(isset($_GET['register'])) {
 
       if($result) {
             echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
+                   $db-> disconnect();
+
             $showFormular = false;
         } else {
             echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
