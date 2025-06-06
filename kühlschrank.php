@@ -1,9 +1,6 @@
 <?php
 require_once("Database.php");
 
-$username = "your_username";
-$password = "your_pass";
-$database = "your_db";
 
 $mysqli = new mysqli("localhost", $username, $password, $database);
 
