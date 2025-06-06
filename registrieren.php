@@ -39,19 +39,19 @@ if(isset($_GET['register'])) {
       $db = new Database();
       $db->connect();
       $result = $db->select("SELECT Benutzername FROM Nutzer WHERE `E-Mail` = ?", "s", $email);
-        $user = $result->fetch_assoc();
+        //$user = $result->fetch_assoc();
  
-        if($user !== null) {
+        if($result !== null) {
             die ("Diese E-Mail-Adresse ist bereits vergeben<br>");
             $error = true;
         }
 
-      $user = null;
+      $result = null;
       
       $result = $db->select("SELECT Benutzername FROM Nutzer WHERE `Benutzername` = ?", "s", $benutzername);
-        $user = $result->fetch_assoc();
+        //$user = $result->fetch_assoc();
  
-        if($user !== null) {
+        if($result !== null) {
             die ("Dieser Benutzername ist bereits vergeben<br>");
             $error = true;
         }
