@@ -14,8 +14,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['login'])) {
 
         
     //Überprüfung des Passworts
-    if ($username !== null && userpasswort !== null && password_verify($passwort, $userpasswort)) {
-        $_SESSION['userid'] = $username['Benutzername'];
+    if ($username !== null && $userpasswort !== null && password_verify($passwort, $userpasswort)) {
+        $_SESSION['userid'] = $username;
         header("Location: geheim.php");
         exit;
     } else {
