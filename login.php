@@ -2,7 +2,7 @@
 session_start();
 require_once 'Database.php';
 
-if(isset($_GET['login'])) {
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['login'])) {
     $email = $_POST['email'];
     $passwort = $_POST['passwort'];
 
@@ -14,9 +14,10 @@ if(isset($_GET['login'])) {
 
         
     //Überprüfung des Passworts
-    if ($username !== null && password_verify($passwort, $userpasswort)) {
+    if ($username !== null && userpasswort !== null && password_verify($passwort, $userpasswort)) {
         $_SESSION['userid'] = $username['Benutzername'];
-        die('Login erfolgreich. Weiter zu <a href="geheim.php">internen Bereich</a>');
+        header("Location: geheim.php");
+        exit;
     } else {
         $errorMessage = "E-Mail oder Passwort war ungültig<br>";
     }
