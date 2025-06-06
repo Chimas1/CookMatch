@@ -42,7 +42,7 @@ if(isset($_GET['register'])) {
  
         if($result !== null) {
             die ("Diese E-Mail-Adresse ist bereits vergeben");
-            echo <a href="login.php">Zum Login</a>;
+            echo '<a href="login.php">Zum Login</a>';
             $error = true;
           
           
@@ -54,7 +54,7 @@ if(isset($_GET['register'])) {
  
         if($result !== null) {
             die ("Diese E-Mail-Adresse ist bereits vergeben");
-            echo <a href="registrieren.php">Nochmal versuchen</a>;
+            echo '<a href="registrieren.php">Nochmal versuchen</a>';
             $error = true;
         }
 
