@@ -25,7 +25,6 @@ function connect()
         die("Connection failed: " .  $this->conn->connect_error); 
     }
 
-    //return $this->conn;
   }
 
 function query($query_string)
