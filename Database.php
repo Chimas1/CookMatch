@@ -47,7 +47,7 @@ function query($query_string)
 
   function select($query_string, $binder, $value)
   {
-    $stm = $this->preparedStm($query_string, $binder, $value);
+    $stmt = $this->preparedStm($query_string, $binder, $value);
     /* bind result variables */
     $stmt->bind_result($res);
 
