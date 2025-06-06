@@ -1,6 +1,13 @@
 <?php
 require_once("Database.php");
 
+//Hier die versprochene Überprüfung, ob der Nutzer eingeloggt ist, einfach // wegmachen, dann sollte es klappen
+//session_start();
+//if (!isset($_SESSION['userid'])) {
+  //  die("Bitte zuerst einloggen. <br> <a href='login.php>Zum Login'</a>");
+//}
+
+
 
       $db = new Database();
       $db->connect();
