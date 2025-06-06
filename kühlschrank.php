@@ -16,6 +16,27 @@ $query = "INSERT INTO table_name (col1, col2, col3, col4, col5)
 $mysqli->query($query);
 $mysqli->close();
 
+
+
+$query = "SELECT * FROM table_name";
+echo "<b> <center>Database Output</center> </b> <br> <br>";
+
+if ($result = $mysqli->query($query)) {
+
+    while ($row = $result->fetch_assoc()) {
+        $field1name = $row["col1"];
+       
+
+        echo '<b>'.$field1name.$field2name.'</b><br />';
+        echo $field5name.'<br />';
+        echo $field5name.'<br />';
+        echo $field5name;
+    }
+
+/*freeresultset*/
+$result->free();
+}
+
 ?>
 
 
