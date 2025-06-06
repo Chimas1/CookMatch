@@ -2,39 +2,40 @@
 require_once("Database.php");
 
 
-$mysqli = new mysqli("localhost", $username, $password, $database);
+      $db = new Database();
+      $db->connect();
 
 // Don't forget to properly escape your values before you send them to DB
 // to prevent SQL injection attacks.
 
-$field1 = $mysqli->real_escape_string($_POST['field1']);
+$zutat = $mysqli->real_escape_string($_POST['zutat']);
+$benutzername = "";
+$anzahl = $mysqli->real_escape_string($_POST['anzahl']);
 
 
-$query = "INSERT INTO table_name (col1, col2, col3, col4, col5)
-            VALUES ('{$field1}','{$field2}','{$field3}','{$field4}','{$field5}')";
-
-$mysqli->query($query);
-$mysqli->close();
+$query = "INSERT INTO `Besitzt` (`Bezeichnung`, `Benutzername`, `Anzahl`) VALUES (?, ?, ?)";
+$result = $db->insert($query, "sss", [$zutat, $benutzername, $anzahl]);
 
 
 
-$query = "SELECT * FROM table_name";
+$query = "SELECT * FROM Besitzt";
+$result = $db->query($query);
 echo "<b> <center>Database Output</center> </b> <br> <br>";
 
-if ($result = $mysqli->query($query)) {
+
+
+if ($result) {
 
     while ($row = $result->fetch_assoc()) {
-        $field1name = $row["col1"];
+        $field1name = $row["Bezeichnung"];
        
+        $field2name = $row["Anzahl"];
 
         echo '<b>'.$field1name.$field2name.'</b><br />';
-        echo $field5name.'<br />';
-        echo $field5name.'<br />';
-        echo $field5name;
     }
 
+$db->disconnect();
 /*freeresultset*/
-$result->free();
 }
 
 ?>
