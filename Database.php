@@ -48,7 +48,12 @@ function query($query_string)
   function select($query_string, $binder, $value)
   {
     $stm = $this->preparedStm($query_string, $binder, $value);
-    return $stm->get_result();
+    /* bind result variables */
+    $stmt->bind_result($res);
+
+    /* fetch value */
+    $stmt->fetch();
+    return $res;
   }
 
   function insert($query_string, $binder, $value)
