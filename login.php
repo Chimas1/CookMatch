@@ -1,11 +1,14 @@
 <?php 
 session_start();
 require_once 'Database.php';
- 
+
 if(isset($_GET['login'])) {
     $email = $_POST['email'];
     $passwort = $_POST['passwort'];
-    
+
+      $db = new Database();
+      $db->connect();
+ 
     // $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
    // $result = $statement->execute(array('email' => $email));
     $result = $db->preparedStm("SELECT * FROM Nutzer WHERE email = :email", "s", $email);
