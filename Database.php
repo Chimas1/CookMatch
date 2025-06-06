@@ -42,12 +42,14 @@ function query($query_string)
           $stmt->bind_param($binder, $value);
 
     
-        return $stmt->execute();
+        return $stmt;
   }
 
   function select($query_string, $binder, $value)
   {
     $stmt = $this->preparedStm($query_string, $binder, $value);
+    /* execute query */
+    $stmt->execute();
     /* bind result variables */
     $stmt->bind_result($res);
 
@@ -58,7 +60,9 @@ function query($query_string)
 
   function insert($query_string, $binder, $value)
   {
-    return $this->preparedStm($query_string, $binder, $value);
+    $stmt = $this->preparedStm($query_string, $binder, $value);
+    /* execute query */
+    return $stmt->execute();
   }
 
 function disconnect()
