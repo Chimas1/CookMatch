@@ -33,17 +33,6 @@ function query($query_string)
     $this->conn->query($query_string);
   }
 
-  function select($query_string, $binder, $value)
-  {
-    $stm = preparedStm($query_string, $binder, $value);
-    return $stm->get_result();
-  }
-
-  function insert($query_string, $binder, $value)
-  {
-    return preparedStm($query_string, $binder, $value);
-  }
-
   function preparedStm($query_string, $binder, $value)
   {
         $stmt = $this->conn->prepare($query_string);
@@ -54,6 +43,17 @@ function query($query_string)
 
     
         return $stmt->execute();
+  }
+
+  function select($query_string, $binder, $value)
+  {
+    $stm = preparedStm($query_string, $binder, $value);
+    return $stm->get_result();
+  }
+
+  function insert($query_string, $binder, $value)
+  {
+    return preparedStm($query_string, $binder, $value);
   }
 
 function disconnect()
