@@ -1,4 +1,4 @@
-c<?php 
+<?php 
 session_start();
 require_once 'Database.php';
 
@@ -9,11 +9,13 @@ if(isset($_GET['login'])) {
       $db = new Database();
       $db->connect();
  
-    $result = $db->select("SELECT email FROM Nutzer WHERE email = ?", "s", $email);
+    $userpasswort = $db->select("SELECT Passwort FROM Nutzer WHERE email = ?", "s", $email);
+    $username = $db->select("SELECT Benutzername FROM Nutzer WHERE email = ?", "s", $email);
+
         
     //Überprüfung des Passworts
-    if ($user !== null && password_verify($passwort, $user['passwort'])) {
-        $_SESSION['userid'] = $user['id'];
+    if ($username !== null && password_verify($passwort, $userpasswort)) {
+        $_SESSION['userid'] = $username['Benutzername'];
         die('Login erfolgreich. Weiter zu <a href="geheim.php">internen Bereich</a>');
     } else {
         $errorMessage = "E-Mail oder Passwort war ungültig<br>";
