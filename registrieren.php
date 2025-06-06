@@ -39,17 +39,17 @@ if(isset($_GET['register'])) {
       $db = new Database();
       $db->connect();
       $result = $db->select("SELECT Benutzername FROM Nutzer WHERE `E-Mail` = ?", "s", $email);
-        //$user = $result->fetch_assoc();
  
         if($result !== null) {
-            die ("Diese E-Mail-Adresse ist bereits vergeben<br>");
+            echo 'Diese E-Mail Adresse hat schon ein Konto! <a href="registrieren.php">Nochmal versuchen</a>';
             $error = true;
+          
+          
         }
 
       $result = null;
       
       $result = $db->select("SELECT Benutzername FROM Nutzer WHERE `Benutzername` = ?", "s", $benutzername);
-        //$user = $result->fetch_assoc();
  
         if($result !== null) {
             die ("Dieser Benutzername ist bereits vergeben<br>");
@@ -60,8 +60,8 @@ if(isset($_GET['register'])) {
       $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
  
         $result = $db->insert("INSERT INTO Nutzer (Benutzername, `E-Mail`, Passwort) VALUES (?, ?, ?)", "sss", [$benutzername, $email, $passwort_hash]);
-     // result ist leer, da es kein True zurückgibt in der Funktion, Database verändern
-        if($result) {
+
+      if($result) {
             echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
             $showFormular = false;
         } else {
