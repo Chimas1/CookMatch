@@ -36,7 +36,7 @@ if ($row = $rezept->fetch_assoc()) {
     }
     echo "</ul>";
 
-    // Anweisungen
+ // Anweisungen
     $anweisungen = $db->select("SELECT * FROM Anweisung WHERE rezept_id = ? ORDER BY schritt_nr ASC", "i", $id);
     echo "<h3>Anweisungen:</h3><ol>";
     while ($a = $anweisungen->fetch_assoc()) {
