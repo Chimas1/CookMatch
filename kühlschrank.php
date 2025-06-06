@@ -8,9 +8,9 @@ require_once("Database.php");
 // Don't forget to properly escape your values before you send them to DB
 // to prevent SQL injection attacks.
 
-$zutat = $mysqli->real_escape_string($_POST['zutat']);
+$zutat = $_POST['zutat'];
 $benutzername = "";
-$anzahl = $mysqli->real_escape_string($_POST['anzahl']);
+$anzahl = $_POST['anzahl'];
 
 
 $query = "INSERT INTO `Besitzt` (`Bezeichnung`, `Benutzername`, `Anzahl`) VALUES (?, ?, ?)";
