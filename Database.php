@@ -47,13 +47,13 @@ function query($query_string)
 
   function select($query_string, $binder, $value)
   {
-    $stm = preparedStm($query_string, $binder, $value);
+    $stm = $this->preparedStm($query_string, $binder, $value);
     return $stm->get_result();
   }
 
   function insert($query_string, $binder, $value)
   {
-    return preparedStm($query_string, $binder, $value);
+    return $this->preparedStm($query_string, $binder, $value);
   }
 
 function disconnect()
