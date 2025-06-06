@@ -38,7 +38,7 @@ if(isset($_GET['register'])) {
     if(!$error) {
       $db = new Database();
       $db->connect();
-      $result = $db->select("SELECT E-Mail FROM Nutzer WHERE `E-Mail` = ?", "s", $email);
+      $result = $db->select("SELECT Benutzername FROM Nutzer WHERE `E-Mail` = ?", "s", $email);
         $user = $result->fetch_assoc();
  
         if($user !== null) {
