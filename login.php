@@ -13,7 +13,7 @@ if(isset($_GET['login'])) {
     $user = $result->fetch();
         
     //Überprüfung des Passworts
-    if ($user && password_verify($passwort, $user['passwort'])) {
+    if ($user !== null && password_verify($passwort, $user['passwort'])) {
         $_SESSION['userid'] = $user['id'];
         die('Login erfolgreich. Weiter zu <a href="geheim.php">internen Bereich</a>');
     } else {
