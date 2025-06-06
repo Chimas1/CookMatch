@@ -41,7 +41,8 @@ if(isset($_GET['register'])) {
       $result = $db->select("SELECT Benutzername FROM Nutzer WHERE `E-Mail` = ?", "s", $email);
  
         if($result !== null) {
-            echo 'Diese E-Mail Adresse hat schon ein Konto! <br > <a href="login.php">Zum Login</a>';
+            die ("Diese E-Mail-Adresse ist bereits vergeben");
+            echo <a href="login.php">Zum Login</a>;
             $error = true;
           
           
@@ -52,7 +53,8 @@ if(isset($_GET['register'])) {
       $result = $db->select("SELECT Benutzername FROM Nutzer WHERE `Benutzername` = ?", "s", $benutzername);
  
         if($result !== null) {
-            echo 'Dieser Benutzername existiert schon. <br > <a href="registrieren.php">Nochmal versuchen</a>';
+            die ("Diese E-Mail-Adresse ist bereits vergeben");
+            echo <a href="registrieren.php">Nochmal versuchen</a>;
             $error = true;
         }
 
