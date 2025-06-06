@@ -1,6 +1,6 @@
 <?php
 require_once("Database.php");
-<?php
+
 $username = "your_username";
 $password = "your_pass";
 $database = "your_db";
