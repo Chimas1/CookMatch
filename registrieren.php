@@ -38,7 +38,7 @@ if(isset($_GET['register'])) {
     if(!$error) {
       $db = new Database();
       $db->connect();
-      $result = $db->preparedStm("SELECT * FROM Nutzer WHERE `E-Mail` = ?", "s", $email);
+      $result = $db->select("SELECT * FROM Nutzer WHERE `E-Mail` = ?", "s", $email);
         $user = $result->fetch_assoc();
  
         if($user !== null) {
@@ -48,7 +48,7 @@ if(isset($_GET['register'])) {
 
       $user = null;
       
-      $result = $db->preparedStm("SELECT * FROM Nutzer WHERE `Benutzername` = ?", "s", $benutzername);
+      $result = $db->select("SELECT * FROM Nutzer WHERE `Benutzername` = ?", "s", $benutzername);
         $user = $result->fetch_assoc();
  
         if($user !== null) {
@@ -59,7 +59,7 @@ if(isset($_GET['register'])) {
 
       $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
  
-        $result = $db->preparedStm("INSERT INTO Nutzer (Benutzername, `E-Mail`, Passwort) VALUES (?, ?, ?)", "sss", [$benutzername, $email, $passwort_hash]);
+        $result = $db->insert("INSERT INTO Nutzer (Benutzername, `E-Mail`, Passwort) VALUES (?, ?, ?)", "sss", [$benutzername, $email, $passwort_hash]);
      // result ist leer, da es kein True zurückgibt in der Funktion, Database verändern
         if($result) {
             echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
