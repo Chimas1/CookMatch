@@ -10,11 +10,11 @@ $id = intval($_GET['id']); // immer validieren!
 // SQL-Abfrage vorbereiten
 $db = new Database();
 $db->connect();
-$result = $db->select("SELECT * FROM Rezepte WHERE id = ?", "i", $id);
+$result = $db->select("SELECT * FROM Rezept WHERE id = ?", "i", $id);
 $result = $result->fetch_assoc();
 
 // Rezept-Grunddaten
-$rezept = $db->select("SELECT * FROM Rezepte WHERE id = ?", "i", $id);
+$rezept = $db->select("SELECT * FROM Rezept WHERE id = ?", "i", $id);
 if ($row = $rezept->fetch_assoc()) {
     echo "<h2>" . htmlspecialchars($row['Name']) . "</h2>";
     echo "<p>" . htmlspecialchars($row['Beschreibung']) . "</p>";
