@@ -45,6 +45,7 @@ function query($query_string)
         return $stmt;
   }
 
+  //WICHTIG: Wenn ihr SELECT Anweisungen stellt immer nur EINEN Wert übergeben
   function select($query_string, $binder, $value)
   {
     $stmt = $this->preparedStm($query_string, $binder, $value);
