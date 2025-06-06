@@ -41,8 +41,7 @@ function query($query_string)
         else
           $stmt->bind_param($binder, $value);
         $stmt->execute();
-    return true;
-    //return $stmt->get_result();
+    return $stmt->get_result();
   }
 
 function disconnect()
