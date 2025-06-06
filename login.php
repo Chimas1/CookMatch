@@ -10,7 +10,6 @@ if(isset($_GET['login'])) {
       $db->connect();
  
     $result = $db->select("SELECT email FROM Nutzer WHERE email = ?", "s", $email);
-    $user = $result->fetch();
         
     //Überprüfung des Passworts
     if ($user !== null && password_verify($passwort, $user['passwort'])) {
