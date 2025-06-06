@@ -1,4 +1,4 @@
-<?php 
+c<?php 
 session_start();
 require_once 'Database.php';
 
@@ -11,7 +11,7 @@ if(isset($_GET['login'])) {
  
     // $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
    // $result = $statement->execute(array('email' => $email));
-    $result = $db->preparedStm("SELECT * FROM Nutzer WHERE email = ?", "s", $email);
+    $result = $db->select("SELECT * FROM Nutzer WHERE email = ?", "s", $email);
     $user = $statement->fetch();
         
     //Überprüfung des Passworts
