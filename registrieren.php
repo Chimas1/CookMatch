@@ -20,7 +20,11 @@ if(isset($_GET['register'])) {
     $passwort = $_POST['passwort'];
     $passwort2 = $_POST['passwort2'];
 
-  
+   
+    if(strlen($benutzername) == 0) {
+        echo 'Bitte einen Benutzernamen angeben<br>';
+        $error = true;
+    }
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
         $error = true;
@@ -65,7 +69,7 @@ if(isset($_GET['register'])) {
 
       if($result) {
             echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
-                   $db-> disconnect();
+            $db-> disconnect();
 
             $showFormular = false;
         } else {
