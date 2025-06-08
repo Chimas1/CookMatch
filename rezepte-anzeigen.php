@@ -14,7 +14,7 @@ $result = $db->select("SELECT * FROM Rezept WHERE Name = ?", "s", $id);
 $result = $result->fetch_assoc();
 
 // Rezept-Grunddaten
-$rezept = $db->select("SELECT * FROM Rezept WHERE Name = ?", "s", $id);
+$rezept = $db->select("SELECT * FROM Rezept, Anweisung WHERE name.rezept = name.anweisung Name = ?", "s", $id);
 if ($row = $rezept->fetch_assoc()) {
     echo "<h2>" . htmlspecialchars($row['Name']) . "</h2>";
     echo "<p>" . htmlspecialchars($row['Beschreibung']) . "</p>";
