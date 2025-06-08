@@ -15,7 +15,7 @@ echo "Willkommen, " . htmlspecialchars($_SESSION['username']);
 if (isset($_GET['suchbegriff'])) {
     $suchbegriff = $conn->real_escape_string($_GET['suchbegriff']);
     
-    $sql = "SELECT id, name FROM Item WHERE name LIKE '%$suchbegriff%'";
+    $sql = "SELECT name FROM Rezept WHERE name LIKE '%$suchbegriff%'";
     $result = $conn->query($sql);
 } 
 $db->disconnect();
@@ -27,13 +27,10 @@ $db->disconnect();
     <meta charset="UTF-8">
     <title>Suche</title>
    <div style="position:absolute; top:10px; right:10px;">
-    <form action="nutzer_logout.php" method="post">
-        <button type="submit">Abmelden</button>
-    </form>
 </div>
 </head>
 <body>
-    <form method="get" action="suche.php">
+    <form method="get" action="rezept-suchen.php">
         <input type="text" name="suchbegriff" value="<?php echo htmlspecialchars($suchbegriff); ?>" placeholder="Suchbegriff eingeben">
         <button type="submit">Suchen</button>
     </form>
@@ -42,7 +39,7 @@ $db->disconnect();
             <?php if ($result->num_rows > 0): ?>
             <ul>
                 <?php while ($row = $result->fetch_assoc()): ?>
-                    <li>ID: <?php echo $row['id']; ?> - Name: <?php echo htmlspecialchars($row['name']); ?></li>
+                    <li> Name: <?php echo htmlspecialchars($row['name']); ?></li>
     <?php endwhile; ?>        
                 </ul>
         <?php else: ?>
