@@ -31,7 +31,7 @@ $db->connect();
 </head>
 <body>
     <div class="container">
-<?
+<?php
 // Rezept-Grunddaten
 $rezept = $db->select("SELECT * FROM Rezept, Anweisung WHERE Rezept.Name = Anweisung.Name and Rezept.Name = ?", "s", $id);
 if ($row = $rezept->fetch_assoc()) {
