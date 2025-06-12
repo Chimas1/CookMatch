@@ -10,7 +10,7 @@ $id = htmlspecialchars($_GET['Name']); // immer validieren!
 // SQL-Abfrage vorbereiten
 $db = new Database();
 $db->connect();
-$result = $db->query("SELECT * FROM Rezept WHERE Name = '".$id."'");
+$result = $db->query("SELECT * FROM Rezept ");
 $result = $result->fetch_assoc();
 
 // Rezept-Grunddaten
