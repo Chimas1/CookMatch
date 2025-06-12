@@ -10,8 +10,6 @@ $id = htmlspecialchars($_GET['Name']); // immer validieren!
 // SQL-Abfrage vorbereiten
 $db = new Database();
 $db->connect();
-$result = $db->query("SELECT * FROM Rezept WHERE Name = '".$id."'");
-$result = $result->fetch_assoc();
 
 // Rezept-Grunddaten
 $rezept = $db->select("SELECT * FROM Rezept, Anweisung WHERE Rezept.Name = Anweisung.Name and Rezept.Name = ?", "s", $id);
@@ -21,7 +19,7 @@ if ($row = $rezept->fetch_assoc()) {
     echo "<p>Zubereitungszeit: " . htmlspecialchars($row['Zeit']) . " Minuten</p>";
     
     // Zutatenliste
-    $zutaten = $db->select("SELECT * FROM Lebensmittel, enthält, anweisung,rezept WHERE Bezeichnung.lebensmittel=Bezeichnung.enthäl and ID.enthält=ID.anweisung and Name.anweisung= Name.Rezept and Name = ?", "i", $id);
+    $zutaten = $db->select("SELECT * FROM Lebensmittel, Enthält, Anweisung,Rezept WHERE Lebensmittel.Bezeichnung=Enthält.Bezeichnung and Enthält.ID=Anweisung.ID and Anweisung.Name= Rezept.Name and Name = ?", "s", $id);
     echo "<h3>Zutaten:</h3><ul>";
     while ($z = $zutaten->fetch_assoc()) {
         echo "<li>" . htmlspecialchars($z['Menge']) . " " . htmlspecialchars($z['Einheit']) . " " . htmlspecialchars($z['Zutat']) . "</li>";
@@ -29,7 +27,7 @@ if ($row = $rezept->fetch_assoc()) {
     echo "</ul>";
 
     // Kochutensilien
-    $utensilien = $db->select("SELECT * FROM Kochutensilien, braucht, Anweisung, Rezept WHERE Titel.kochutensilien=Titel.braucht and ID.braucht=ID.Anweisung and Name.Anweisung=Name.Rezept and Name = ?", "i", $id);
+    $utensilien = $db->select("SELECT * FROM Kochutensilien, braucht, Anweisung, Rezept WHERE Titel.kochutensilien=Titel.braucht and ID.braucht=ID.Anweisung and Name.Anweisung=Name.Rezept and Name = ?", "s", $id);
     echo "<h3>Kochutensilien:</h3><ul>";
     while ($u = $utensilien->fetch_assoc()) {
         echo "<li>" . htmlspecialchars($u['Utensil']) . "</li>";
@@ -37,7 +35,7 @@ if ($row = $rezept->fetch_assoc()) {
     echo "</ul>";
 
  // Anweisungen
-    $anweisungen = $db->select("SELECT * FROM Anweisung, Rezept WHERE Name.anweisung=Name.Rezept and name= ? ORDER BY schritt_nr ASC", "i", $id);
+    $anweisungen = $db->select("SELECT * FROM Anweisung, Rezept WHERE Name.anweisung=Name.Rezept and name= ? ORDER BY schritt_nr ASC", "s", $id);
     echo "<h3>Anweisungen:</h3><ol>";
     while ($a = $anweisungen->fetch_assoc()) {
         echo "<li>" . htmlspecialchars($a['Text']) . "</li>";
@@ -45,7 +43,7 @@ if ($row = $rezept->fetch_assoc()) {
     echo "</ol>";
 
     // Bewertungen
-    $bewertungen = $db->select("SELECT * FROM bewertet, Rezepte WHERE Name.bewertet=Name.Rezept and name= ?", "i", $id);
+    $bewertungen = $db->select("SELECT * FROM bewertet, Rezepte WHERE Name.bewertet=Name.Rezept and name= ?", "s", $id);
     echo "<h3>Bewertungen:</h3>";
     $anzahl = 0; $summe = 0;
     while ($b = $bewertungen->fetch_assoc()) {
