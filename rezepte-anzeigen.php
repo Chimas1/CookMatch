@@ -34,6 +34,7 @@ $db->connect();
 <?php
 // Rezept-Grunddaten
 $zeit = $db->select("SELECT SUM(Zeit) FROM Rezept, Anweisung WHERE Rezept.Name = Anweisung.Name and Rezept.Name = ?", "s", $id)->fetch_assoc();
+print_r($zeit);
 $rezept = $db->select("SELECT * FROM Rezept, Anweisung WHERE Rezept.Name = Anweisung.Name and Rezept.Name = ?", "s", $id);
 if ($row = $rezept->fetch_assoc()) {
     echo "<div class='rezept-title'>". htmlspecialchars($row['Name']) ."</div>";
