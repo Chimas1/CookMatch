@@ -29,7 +29,7 @@ function connect()
 
 function query($query_string)
   {
-    $this->conn->query($query_string);
+    return $this->conn->query($query_string);
   }
 
   function preparedStm($query_string, $binder, $value)
