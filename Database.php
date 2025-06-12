@@ -47,6 +47,9 @@ function query($query_string)
   //WICHTIG: Wenn ihr SELECT Anweisungen stellt immer nur EINEN Wert übergeben
   function select($query_string, $binder, $value)
   {
+    echo $query_string;
+    echo $binder;
+    echo $value;
     $stmt = $this->preparedStm($query_string, $binder, $value);
     /* execute query */
     $stmt->execute();
