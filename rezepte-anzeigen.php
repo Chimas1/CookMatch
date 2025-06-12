@@ -27,12 +27,15 @@ if ($row = $rezept->fetch_assoc()) {
     echo "</ul>";
 
     // Kochutensilien
+    $utensilien = $db->select("SELECT * FROM Kochutensilien, Braucht, Anweisung, Rezept WHERE Kochutensilien.Titel=Braucht.Titel and Braucht.ID=Anweisung.ID and Anweisung.Name=Rezept.Name and Rezept.Name = ?", "s", $id);
+    echo "<h3>Kochutensilien:</h3><ul>";
+    while ($u = $utensilien->fetch_assoc()) {
         echo "<li>" . htmlspecialchars($u['Utensil']) . "</li>";
     }
     echo "</ul>";
 
  // Anweisungen
-    $anweisungen = $db->select("SELECT * FROM Anweisung, Rezept WHERE Name.anweisung=Name.Rezept and name= ? ORDER BY schritt_nr ASC", "s", $id);
+    $anweisungen = $db->select("SELECT * FROM Anweisung, Rezept WHERE Anweisung.Name=Rezept.Name and Rezept.Name= ? ORDER BY Anweisung.ID", "s", $id);
     echo "<h3>Anweisungen:</h3><ol>";
     while ($a = $anweisungen->fetch_assoc()) {
         echo "<li>" . htmlspecialchars($a['Text']) . "</li>";
@@ -40,7 +43,7 @@ if ($row = $rezept->fetch_assoc()) {
     echo "</ol>";
 
     // Bewertungen
-    $bewertungen = $db->select("SELECT * FROM bewertet, Rezepte WHERE Name.bewertet=Name.Rezept and name= ?", "s", $id);
+    $bewertungen = $db->select("SELECT * FROM Bewertet, Rezepte WHERE Bewertet.Name=Rezept.Name and Rezept.Name= ?", "s", $id);
     echo "<h3>Bewertungen:</h3>";
     $anzahl = 0; $summe = 0;
     while ($b = $bewertungen->fetch_assoc()) {
