@@ -3,21 +3,21 @@ session_start();
 require_once 'db.php'; // Deine DB-Verbindung
 
 // Prüfen, ob der Benutzer angemeldet ist
-if (!isset($_SESSION['userid'])) {
+if (!isset($_SESSION['benutzername'])) {
     die("Bitte zuerst einloggen.");
 }
 
-$benutzer_id = $_SESSION['benutzer_id'];
-$rezept_id = intval($_GET['rezept_id'] ?? 0);
+$benutzername = $_SESSION['benutzername'];
+$name = intval($_GET['name'] ?? 0);
 
 if ($rezept_id > 0) {
     // Prüfen, ob das Rezept schon in den Favoriten ist
-    $stmt = $pdo->prepare("SELECT * FROM speichern WHERE benutzer_id = ? AND rezept_id = ?");
+    $stmt = $pdo->prepare("SELECT * FROM speichern WHERE benutzername = ? AND name = ?");
     $stmt->execute([$benutzer_id, $rezept_id]);
     if ($stmt->rowCount() == 0) {
         // Hinzufügen
-        $stmt = $pdo->prepare("INSERT INTO speichern (benutzer_id, rezept_id) VALUES (?, ?)");
-        if ($stmt->execute([$benutzer_id, $rezept_id])) {
+        $stmt = $pdo->prepare("INSERT INTO speichern (benutzername, name) VALUES (?, ?)");
+        if ($stmt->execute([$benutzername, $name])) {
             echo "Rezept zu Favoriten hinzugefügt!";
         } else {
             echo "Fehler beim Hinzufügen.";
@@ -26,6 +26,6 @@ if ($rezept_id > 0) {
         echo "Rezept ist bereits in den Favoriten!";
     }
 } else {
-    echo "Ungültige Rezept-ID.";
+    echo "Ungültiger Rezeptname.";
 }
 ?>
