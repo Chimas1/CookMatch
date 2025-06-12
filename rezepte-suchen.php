@@ -2,12 +2,12 @@
 require_once 'Database.php';
 $db = new Database();
 $conn = $db->connect();
-$suchbegriff ="";
+$rezeptname ="";
 
-if (isset($_GET['suchbegriff'])) {
-    $suchbegriff = $conn->real_escape_string($_GET['suchbegriff']);
+if (isset($_GET['rezeptname'])) {
+    $suchbegriff = $conn->real_escape_string($_GET['rezeptname']);
     
-    $sql = "SELECT name FROM Rezept WHERE name LIKE '%$suchbegriff%'";
+    $sql = "SELECT name FROM Rezept WHERE name LIKE '%$rezeptname%'";
     $result = $conn->query($sql);
 } 
 $db->disconnect();
@@ -23,11 +23,11 @@ $db->disconnect();
 </head>
 <body>
     <form method="get" action="rezept-suchen.php">
-        <input type="text" name="suchbegriff" value="<?php echo htmlspecialchars($suchbegriff); ?>" placeholder="Suchbegriff eingeben">
+        <input type="text" name="suchbegriff" value="<?php echo htmlspecialchars($suchbegriff); ?>" placeholder="Rezeptname eingeben">
         <button type="submit">Suchen</button>
     </form>
 <h2>Suchergebnisse:</h2>
-    <?php if (isset($_GET['suchbegriff'])): ?>
+    <?php if (isset($_GET['Rezeptname'])): ?>
             <?php if ($result->num_rows > 0): ?>
             <ul>
                 <?php while ($row = $result->fetch_assoc()): ?>
@@ -35,7 +35,7 @@ $db->disconnect();
     <?php endwhile; ?>        
                 </ul>
         <?php else: ?>
-            <p>Keine Ergebnisse gefunden.</p>
+            <p>Keine Rezept unter dem Namen gefunden.</p>
         <?php endif; ?>
     <?php endif; ?>
 </body>
