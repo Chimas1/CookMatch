@@ -53,12 +53,8 @@ function query($query_string)
     $stmt = $this->preparedStm($query_string, $binder, $value);
     /* execute query */
     $stmt->execute();
-    /* bind result variables */
-    $stmt->bind_result($res);
-
-    /* fetch value */
-    $stmt->fetch();
-    return $res;
+    
+    return $stmt->get_result();
   }
 
   function insert($query_string, $binder, $value)
