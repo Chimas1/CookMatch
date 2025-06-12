@@ -64,7 +64,7 @@ function query($query_string)
 function disconnect()
   {
     // Conection schließen
-    $conn->close();
+    $this->conn->close();
   }
 }
 ?>
