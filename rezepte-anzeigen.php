@@ -69,3 +69,48 @@ if ($row = $rezept->fetch_assoc()) {
 
 $conn->close();
 ?>
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Rezepte anzeigen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f9; margin: 0; }
+        .container { max-width: 700px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);}
+        .rezept-title { font-size: 2em; font-weight: bold; margin-bottom: 10px; color: #35729b;}
+        .rezept-img { width: 100%; max-height: 320px; object-fit: cover; border-radius: 8px; margin-bottom: 18px;}
+        .meta { color: #888; font-size: 0.95em; margin-bottom: 18px;}
+        .section-title { font-size: 1.2em; margin-top: 20px; margin-bottom: 8px; color: #35729b;}
+        ul, ol { margin: 0 0 18px 20px; }
+        .zutaten { background: #eaf6fd; padding: 12px; border-radius: 8px;}
+        .anleitung { background: #fdf3e7; padding: 12px; border-radius: 8px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="rezept-title">Spaghetti Carbonara</div>
+        <img src="pfad/zum/bild.jpg" alt="Spaghetti Carbonara" class="rezept-img">
+        <div class="meta">Vorbereitungszeit: 15 Min | Kochzeit: 20 Min | Portionen: 2</div>
+        
+        <div class="section-title">Zutaten</div>
+        <ul class="zutaten">
+            <li>200g Spaghetti</li>
+            <li>100g Speck</li>
+            <li>2 Eier</li>
+            <li>50g Parmesan</li>
+            <li>Pfeffer, Salz</li>
+        </ul>
+        
+        <div class="section-title">Zubereitung</div>
+        <ol class="anleitung">
+            <li>Spaghetti kochen.</li>
+            <li>Speck anbraten.</li>
+            <li>Eier und Parmesan verrühren.</li>
+            <li>Spaghetti, Speck und Ei-Mischung vermengen.</li>
+            <li>Mit Pfeffer und Salz abschmecken.</li>
+        </ol>
+    </div>
+</body>
+</html>
