@@ -65,7 +65,7 @@ if ($row = $rezept->fetch_assoc()) {
 
 // Conection schließen
 
-$conn->close();
+$db->close();
 ?>
 
 <!DOCTYPE html>
