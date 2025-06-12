@@ -35,7 +35,7 @@ $db->connect();
 // Rezept-Grunddaten
 $rezept = $db->select("SELECT * FROM Rezept, Anweisung WHERE Rezept.Name = Anweisung.Name and Rezept.Name = ?", "s", $id);
 if ($row = $rezept->fetch_assoc()) {
-    echo '<div class="rezept-title">'. htmlspecialchars($row['Name']) .'</div>'
+    echo "<div class='rezept-title'>". htmlspecialchars($row['Name']) ."</div>";
     echo "<p>" . htmlspecialchars($row['Beschreibung']) . "</p>";
     echo "<p>Zubereitungszeit: " . htmlspecialchars($row['Zeit']) . " Minuten</p>";
     
