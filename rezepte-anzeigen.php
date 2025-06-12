@@ -10,11 +10,32 @@ $id = htmlspecialchars($_GET['Name']); // immer validieren!
 // SQL-Abfrage vorbereiten
 $db = new Database();
 $db->connect();
-
+?>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Rezepte anzeigen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f9; margin: 0; }
+        .container { max-width: 700px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);}
+        .rezept-title { font-size: 2em; font-weight: bold; margin-bottom: 10px; color: #35729b;}
+        .rezept-img { width: 100%; max-height: 320px; object-fit: cover; border-radius: 8px; margin-bottom: 18px;}
+        .meta { color: #888; font-size: 0.95em; margin-bottom: 18px;}
+        .section-title { font-size: 1.2em; margin-top: 20px; margin-bottom: 8px; color: #35729b;}
+        ul, ol { margin: 0 0 18px 20px; }
+        .zutaten { background: #eaf6fd; padding: 12px; border-radius: 8px;}
+        .anleitung { background: #fdf3e7; padding: 12px; border-radius: 8px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+<?
 // Rezept-Grunddaten
 $rezept = $db->select("SELECT * FROM Rezept, Anweisung WHERE Rezept.Name = Anweisung.Name and Rezept.Name = ?", "s", $id);
 if ($row = $rezept->fetch_assoc()) {
-    echo "<h2>" . htmlspecialchars($row['Name']) . "</h2>";
+    echo '<div class="rezept-title">'. htmlspecialchars($row['Name']) .'</div>'
     echo "<p>" . htmlspecialchars($row['Beschreibung']) . "</p>";
     echo "<p>Zubereitungszeit: " . htmlspecialchars($row['Zeit']) . " Minuten</p>";
     
@@ -68,27 +89,8 @@ if ($row = $rezept->fetch_assoc()) {
 $db-> disconnect();
 ?>
 
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>Rezepte anzeigen</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body { font-family: Arial, sans-serif; background: #f4f4f9; margin: 0; }
-        .container { max-width: 700px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);}
-        .rezept-title { font-size: 2em; font-weight: bold; margin-bottom: 10px; color: #35729b;}
-        .rezept-img { width: 100%; max-height: 320px; object-fit: cover; border-radius: 8px; margin-bottom: 18px;}
-        .meta { color: #888; font-size: 0.95em; margin-bottom: 18px;}
-        .section-title { font-size: 1.2em; margin-top: 20px; margin-bottom: 8px; color: #35729b;}
-        ul, ol { margin: 0 0 18px 20px; }
-        .zutaten { background: #eaf6fd; padding: 12px; border-radius: 8px;}
-        .anleitung { background: #fdf3e7; padding: 12px; border-radius: 8px;}
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="rezept-title">Spaghetti Carbonara</div>
+
+        
         <img src="pfad/zum/bild.jpg" alt="Spaghetti Carbonara" class="rezept-img">
         <div class="meta">Vorbereitungszeit: 15 Min | Kochzeit: 20 Min | Portionen: 2</div>
         
