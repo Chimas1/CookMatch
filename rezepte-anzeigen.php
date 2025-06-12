@@ -33,11 +33,12 @@ $db->connect();
     <div class="container">
 <?php
 // Rezept-Grunddaten
+$zeit = $db->select("SELECT SUM(Zeit) FROM Rezept, Anweisung WHERE Rezept.Name = Anweisung.Name and Rezept.Name = ?", "s", $id)->fetch();
 $rezept = $db->select("SELECT * FROM Rezept, Anweisung WHERE Rezept.Name = Anweisung.Name and Rezept.Name = ?", "s", $id);
 if ($row = $rezept->fetch_assoc()) {
     echo "<div class='rezept-title'>". htmlspecialchars($row['Name']) ."</div>";
+    echo "<div class='meta'>Vorbereitungszeit: ".$zeit['Zeit'] === null ? 0 : htmlspecialchars($row['Zeit'])." Min</div>"
     echo "<p>" . htmlspecialchars($row['Beschreibung']) . "</p>";
-    echo "<p>Zubereitungszeit: " . htmlspecialchars($row['Zeit']) . " Minuten</p>";
     
     // Zutatenliste
     $zutaten = $db->select("SELECT * FROM Lebensmittel, Enthält, Anweisung,Rezept WHERE Lebensmittel.Bezeichnung=Enthält.Bezeichnung and Enthält.ID=Anweisung.ID and Anweisung.Name= Rezept.Name and Rezept.Name = ?", "s", $id);
@@ -91,8 +92,8 @@ $db-> disconnect();
 
 
         
-        <img src="pfad/zum/bild.jpg" alt="Spaghetti Carbonara" class="rezept-img">
-        <div class="meta">Vorbereitungszeit: 15 Min | Kochzeit: 20 Min | Portionen: 2</div>
+ 
+       
         
         <div class="section-title">Zutaten</div>
         <ul class="zutaten">
