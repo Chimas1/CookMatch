@@ -54,7 +54,7 @@ if(isset($_GET['register'])) {
       
       $result = $db->select("SELECT Benutzername FROM Nutzer WHERE `Benutzername` = ?", "s", $benutzername);
  
-        if($result !== null) {
+        if(!empty($result)) {
             die ("Dieser Benutzername ist bereits vergeben <br> <a href='registrieren.php'>Nochmal versuchen</a>");
             $error = true;
 
