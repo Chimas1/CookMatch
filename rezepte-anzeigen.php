@@ -44,7 +44,7 @@ if ($row = $rezept->fetch_assoc()) {
     // Zutatenliste
     $zutaten = $db->select("SELECT * FROM Lebensmittel, Enthält, Anweisung,Rezept WHERE Lebensmittel.Bezeichnung=Enthält.Bezeichnung and Enthält.ID=Anweisung.ID and Anweisung.Name= Rezept.Name and Rezept.Name = ?", "s", $id);
     echo "<h3>Zutaten:</h3><ul>";
-   <div class="section-title">Zutaten</div>
+   <div class="section-title"Zutaten</div>
         <ul class="zutaten">
     while ($z = $zutaten->fetch_assoc()) {
         echo "<li>" . htmlspecialchars($z['Menge']) . " " . htmlspecialchars($z['Einheit']) . " " . htmlspecialchars($z['Zutat']) . "</li>";
