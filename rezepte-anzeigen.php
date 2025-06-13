@@ -52,10 +52,11 @@ if ($row = $rezept->fetch_assoc()) {
     echo "</ul>";
 
     // Kochutensilien
-    $utensilien = $db->select("SELECT * FROM Kochutensilien, Braucht, Anweisung, Rezept WHERE Kochutensilien.Titel=Braucht.Titel and Braucht.ID=Anweisung.ID and Anweisung.Name=Rezept.Name and Rezept.Name = ?", "s", $id);
-    echo "<h3>Kochutensilien:</h3><ul>";
+    $utensilien = $db->select("SELECT Kochutensilien.Titel FROM Kochutensilien, Braucht, Anweisung, Rezept WHERE Kochutensilien.Titel=Braucht.Titel and Braucht.ID=Anweisung.ID and Anweisung.Name=Rezept.Name and Rezept.Name = ?", "s", $id);
+    
+ echo "<h3>Kochutensilien:</h3><ul>";
     while ($u = $utensilien->fetch_assoc()) {
-        echo "<li>" . htmlspecialchars($u['Name']) . "</li>";
+        echo "<li>" . htmlspecialchars($u['Titel']) . "</li>";
     }
     echo "</ul>";
 
@@ -64,7 +65,7 @@ if ($row = $rezept->fetch_assoc()) {
     $anweisungen = $db->select("SELECT * FROM Anweisung, Rezept WHERE Anweisung.Name=Rezept.Name and Rezept.Name= ? ORDER BY Anweisung.ID", "s", $id);
     echo "<ol class= '<h3>Anweisungen:</h3><ol>'";
     while ($a = $anweisungen->fetch_assoc()) {
-        echo "<li>" . htmlspecialchars($a['Text']) . "</li>";
+        echo "<li>" . htmlspecialchars($a['Beschreibung']) . "</li>";
     }
     echo "</ol>";
 
