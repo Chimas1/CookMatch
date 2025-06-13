@@ -42,7 +42,7 @@ $db->disconnect();
 </html>
 
 
-/*
+
 
 <form method="get" action="">
   <!-- Zutaten -->
@@ -168,4 +168,4 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute($params);
 $rezepte = $stmt->fetchAll();
 
-        */
+        

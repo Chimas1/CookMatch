@@ -38,7 +38,7 @@ $rezept = $db->select("SELECT * FROM Rezept, Anweisung WHERE Rezept.Name = Anwei
 if ($row = $rezept->fetch_assoc()) {
     echo "<div class='rezept-title'>". htmlspecialchars($row['Name']) ."</div>";
     echo "<div class='meta'>Vorbereitungszeit: ".$zeit['SUM(Zeit)'] === null ? 0 : htmlspecialchars($zeit['SUM(Zeit)'])." Min</div>";
-    echo "<p>" . htmlspecialchars($row['Beschreibung']) . "</p>";
+   
     
     // Zutatenliste
     $zutaten = $db->select("SELECT * FROM Lebensmittel, Enthält, Anweisung,Rezept WHERE Lebensmittel.Bezeichnung=Enthält.Bezeichnung and Enthält.ID=Anweisung.ID and Anweisung.Name= Rezept.Name and Rezept.Name = ?", "s", $id);
@@ -52,7 +52,7 @@ if ($row = $rezept->fetch_assoc()) {
     echo "</ul>";
 
     // Kochutensilien
-    $utensilien = $db->select("SELECT Kochutensilien.Titel FROM Kochutensilien, Braucht, Anweisung, Rezept WHERE Kochutensilien.Titel=Braucht.Titel and Braucht.ID=Anweisung.ID and Anweisung.Name=Rezept.Name and Rezept.Name = ?", "s", $id);
+    $utensilien = $db->select("SELECT distinct Kochutensilien.Titel FROM Kochutensilien, Braucht, Anweisung, Rezept WHERE Kochutensilien.Titel=Braucht.Titel and Braucht.ID=Anweisung.ID and Anweisung.Name=Rezept.Name and Rezept.Name = ?", "s", $id);
     
  echo "<h3>Kochutensilien:</h3><ul>";
     while ($u = $utensilien->fetch_assoc()) {
