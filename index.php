@@ -3,8 +3,7 @@
 session_start();
 // Optional: Login-Prüfung
 if (!isset($_SESSION['benutzername'])) {
-    header('Location: login.php');
-    exit;
+    die("Bitte zuerst einloggen.");
 }
     
 ?>
