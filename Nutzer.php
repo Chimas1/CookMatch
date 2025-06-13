@@ -14,7 +14,7 @@ $db = new Database();
 $db->connect();
 
 $userid = $_SESSION['userid'];
-$sql = $db->select("SELECT profilbild, name, email FROM nutzer WHERE id = ?, [$userid]);
+$sql = $db->select("SELECT profilbild, name, email FROM nutzer WHERE id = ?, $userid);
 
 ?>
 
