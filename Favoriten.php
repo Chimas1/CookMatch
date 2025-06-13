@@ -3,8 +3,10 @@ session_start();
 require_once 'db.php'; // Deine DB-Verbindung
 
 // Prüfen, ob der Benutzer angemeldet ist
-if (!isset($_SESSION['benutzername'])) {
-    die("Bitte zuerst einloggen.");
+if (!isset($_SESSION['userid'])) {
+    echo "Bitte zuerst einloggen.";
+    echo '<a href="login.php">Bitte einloggen</a>';
+
 }
 
 $benutzername = $_SESSION['benutzername'];
