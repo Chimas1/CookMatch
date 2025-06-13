@@ -43,9 +43,10 @@ if ($row = $rezept->fetch_assoc()) {
     
     // Zutatenliste
     $zutaten = $db->select("SELECT * FROM Lebensmittel, Enthält, Anweisung,Rezept WHERE Lebensmittel.Bezeichnung=Enthält.Bezeichnung and Enthält.ID=Anweisung.ID and Anweisung.Name= Rezept.Name and Rezept.Name = ?", "s", $id);
-    echo "<h3>Zutaten:</h3><ul>";
-   <div class="section-title">Zutaten</div>
-        <ul class="zutaten">
+    echo "<h3>Zutaten:</h3><ul>"; 
+   echo "<div class='section-title'>Zutaten</div>
+        <ul class='zutaten'>";
+
     while ($z = $zutaten->fetch_assoc()) {
         echo "<li>" . htmlspecialchars($z['Menge']) . " " . htmlspecialchars($z['Einheit']) . " " . htmlspecialchars($z['Zutat']) . "</li>";
     }
@@ -60,9 +61,9 @@ if ($row = $rezept->fetch_assoc()) {
     echo "</ul>";
 
  // Anweisungen
-    <div class="section-title">Zubereitung</div>
+   echo <div class='section-title'>Zubereitung</div>;
     $anweisungen = $db->select("SELECT * FROM Anweisung, Rezept WHERE Anweisung.Name=Rezept.Name and Rezept.Name= ? ORDER BY Anweisung.ID", "s", $id);
-    <ol class= "<h3>Anweisungen:</h3><ol>";
+    echo <ol class= '<h3>Anweisungen:</h3><ol>';
     while ($a = $anweisungen->fetch_assoc()) {
         echo "<li>" . htmlspecialchars($a['Text']) . "</li>";
     }
