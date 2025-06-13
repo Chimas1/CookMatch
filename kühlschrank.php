@@ -21,7 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // to prevent SQL injection attacks.
 
   $bezeichnung = $__POST['Bezeichnung'];
-  $anzahl = $__POST['Anzahl']>0;
+
+  <!-- Anzahl -->
+  <label>Anzahl:</label>
+  <input type="number" name="Anzahl" min="1"><br>
 
 
   $query = "INSERT INTO `Besitzt` (`Bezeichnung`, `Benutzername`, `Anzahl`) VALUES (?, ?, ?)";
