@@ -15,13 +15,13 @@ require_once("Database.php");
 // Don't forget to properly escape your values before you send them to DB
 // to prevent SQL injection attacks.
 
-$zutat = $_POST['zutat'];
+$bezeichnung = $_POST['Bezeichnung'];
 $benutzername = "";
-$anzahl = $_POST['anzahl'];
+$anzahl = $_POST['Anzahl'];
 
 
 $query = "INSERT INTO `Besitzt` (`Bezeichnung`, `Benutzername`, `Anzahl`) VALUES (?, ?, ?)";
-$result = $db->insert($query, "sss", [$zutat, $benutzername, $anzahl]);
+$result = $db->insert($query, "sss", [$bezeichnung, $benutzername, $anzahl]);
 
 
 
