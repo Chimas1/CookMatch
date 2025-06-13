@@ -1,4 +1,6 @@
 <?php
+
+require_once 'Database.php';
 session_start();
 
 // Prüfen, ob der Nutzer eingeloggt ist
@@ -8,7 +10,18 @@ if (!isset($_SESSION['userid'])) {
 
 }
 
-$user = $_SESSION['userid'];
+$db = new Database();
+$db->connect();
+
+$userid = $_SESSION['userid'];
+$sql = $db->select("SELECT profilbild, name, email FROM nutzer WHERE id = ?);
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $userid);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+$stmt->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
