@@ -1,16 +1,21 @@
 <?php
 require_once("Database.php");
 
+
+
+      $db = new Database();
+      $db->connect();
+
+// Check if the form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+
 //Hier die versprochene Überprüfung, ob der Nutzer eingeloggt ist, einfach // wegmachen, dann sollte es klappen
 //session_start();
 //if (!isset($_SESSION['userid'])) {
   //  die("Bitte zuerst einloggen. <br> <a href='login.php>Zum Login'</a>");
 //}
 
-
-
-      $db = new Database();
-      $db->connect();
 
 // Don't forget to properly escape your values before you send them to DB
 // to prevent SQL injection attacks.
@@ -23,7 +28,7 @@ $anzahl = $_POST['Anzahl'];
 $query = "INSERT INTO `Besitzt` (`Bezeichnung`, `Benutzername`, `Anzahl`) VALUES (?, ?, ?)";
 $result = $db->insert($query, "sss", [$bezeichnung, $benutzername, $anzahl]);
 
-
+}
 
 $query = "SELECT * FROM Besitzt";
 $result = $db->query($query);
@@ -34,11 +39,8 @@ echo "<b> <center>Database Output</center> </b> <br> <br>";
 if ($result) {
 
     while ($row = $result->fetch_assoc()) {
-        $field1name = $row["Bezeichnung"];
-       
-        $field2name = $row["Anzahl"];
 
-        echo '<b>'.$field1name.$field2name.'</b><br />';
+        echo '<b>'.$row["Bezeichnung"]." ".$row["Anzahl"].'</b><br />';
     }
 
 $db->disconnect();
