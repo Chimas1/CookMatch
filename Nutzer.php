@@ -14,7 +14,7 @@ $db = new Database();
 $db->connect();
 
 $userid = $_SESSION['userid'];
-$result = $db->select("SELECT Profilbild, Benutzername, E-Mail FROM nutzer WHERE id = ?, [] ,  $userid");
+$result = $db->select("SELECT Profilbild, Benutzername, E-Mail FROM nutzer WHERE id = ?, "sss" ,  $userid");
 $row = $result->fetch_assoc();
 
 
