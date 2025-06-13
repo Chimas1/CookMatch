@@ -21,10 +21,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['login'])) {
     } else {
         $errorMessage = "E-Mail oder Passwort war ungültig<br>";
     }
-    
+    $db->disconnect();
 }
 
-$db->disconnect();
+
     
 ?>
 <!DOCTYPE html> 
