@@ -47,7 +47,7 @@ if ($row = $rezept->fetch_assoc()) {
         <ul class='zutaten'>";
 
     while ($z = $zutaten->fetch_assoc()) {
-        echo "<li>" . htmlspecialchars($z['Menge']) . " " . htmlspecialchars($z['Einheit']) . " " . htmlspecialchars($z['Zutat']) . "</li>";
+        echo "<li>" . htmlspecialchars($z['Menge']) . " " . htmlspecialchars($z['Einheit']) . " " . htmlspecialchars($z['Bezeichnung']) . "</li>";
     }
     echo "</ul>";
 
