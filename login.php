@@ -11,7 +11,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['login'])) {
  
     $username = $db->select("SELECT Benutzername FROM Nutzer WHERE 'E-Mail' = ?", "s", $email);
     $userpasswortResult = $db->select("SELECT Passwort FROM Nutzer WHERE 'E-Mail' = ?", "s", $email);
-    echo $username;
   $userpasswort = null;
     if ($userpasswortResult && $row = $userpasswortResult->fetch_assoc()) {
     $userpasswort = $row['Passwort'];
