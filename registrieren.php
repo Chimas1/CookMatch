@@ -44,7 +44,7 @@ if(isset($_GET['register'])) {
       $db->connect();
       $result = $db->select("SELECT Benutzername FROM Nutzer WHERE `E-Mail` = ?", "s", $email);
  
-        if($result !== null) {
+        if(!empty($result)) {
             die ("Diese E-Mail-Adresse ist bereits vergeben <br> <a href='login.php'>Zum Login</a>");
             $error = true;
           
