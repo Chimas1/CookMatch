@@ -9,11 +9,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['login'])) {
       $db = new Database();
       $db->connect();
  
-    $userpasswort = $db->select("SELECT Passwort FROM Nutzer WHERE 'E-Mail' = ?", "s", $email);
     $username = $db->select("SELECT Benutzername FROM Nutzer WHERE 'E-Mail' = ?", "s", $email);
+    $userpasswortResult = $db->select("SELECT Passwort FROM Nutzer WHERE 'E-Mail' = ?", "s", $email);
+  $userpasswort = null;
+    if ($userpasswortResult && $row = $userpasswortResult->fetch_assoc()) {
+    $userpasswort = $row['Passwort'];
+}
 
-        
-    //Überprüfung des Passworts
     if ($username !== null && $userpasswort !== null && password_verify($passwort, $userpasswort)) {
         $_SESSION['userid'] = $username;
         header("Location: geheim.php");
