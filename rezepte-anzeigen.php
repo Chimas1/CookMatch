@@ -52,7 +52,7 @@ if ($row = $rezept->fetch_assoc()) {
     echo "</ul>";
 
     // Kochutensilien
-    $utensilien = $db->select("SELECT Kochutensilien.Titel FROM Kochutensilien, Braucht, Anweisung, Rezept WHERE Kochutensilien.Titel=Braucht.Titel and Braucht.ID=Anweisung.ID and Anweisung.Name=Rezept.Name and Rezept.Name = ?", "s", $id);
+    $utensilien = $db->select("SELECT Kochutensilien.Titel distinct FROM Kochutensilien, Braucht, Anweisung, Rezept WHERE Kochutensilien.Titel=Braucht.Titel and Braucht.ID=Anweisung.ID and Anweisung.Name=Rezept.Name and Rezept.Name = ?", "s", $id);
     
  echo "<h3>Kochutensilien:</h3><ul>";
     while ($u = $utensilien->fetch_assoc()) {
