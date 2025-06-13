@@ -1,5 +1,3 @@
-<?php
- echo "test";
 
 <?php
 session_start();
