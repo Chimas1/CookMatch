@@ -8,8 +8,8 @@
 $id = htmlspecialchars($_GET['Name']); // immer validieren!
 echo htmlspecialchars($row['Name'])
 // SQL-Abfrage vorbereiten
-$db->connect();
 $db = new Database();
+$db->connect();
 ?>
 <!DOCTYPE html>
 <html lang="de">
