@@ -3,7 +3,8 @@
 session_start();
 // Optional: Login-Prüfung
 if (!isset($_SESSION['userid'])) {
-    die("Bitte zuerst einloggen.");
+    echo "Bitte zuerst einloggen.";
+    echo href="rezepte-suchen.php">Zu den Rezepten;
 }
 
     ?>
