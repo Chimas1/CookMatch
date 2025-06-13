@@ -51,11 +51,10 @@ $row = $result->fetch_assoc();
 </head>
 <body>
     <div class="profil-container">
-        <img src="<?php echo htmlspecialchars($row['Profilbild']); ?>" alt="Profilbild" class="profilbild">
-        <div class="profil-name"><?php echo htmlspecialchars($row['Benutzername']); ?></div>
         <?php if (!empty($row['Profilbild'])): ?>
         <img src="<?php echo htmlspecialchars($row['Profilbild']); ?>" alt="Profilbild" class="profilbild">
-        <?php endif; ?>
+        <?php endif; ?>        <div class="profil-name"><?php echo htmlspecialchars($row['Benutzername']); ?></div>
+        <div class="profil-email"><?php echo htmlspecialchars($row['E-Mail']); ?></div>
     </div>
 </body>
 </html>
