@@ -12,12 +12,16 @@ require_once("Database.php");
 //}
 $benutzername = "";
 // Check if the form is submitted
+if (!isset($_SESSION['userid'])) {
+    echo "Bitte zuerst einloggen.";
+    echo '<a href="rezepte-suchen.php">Zu den Rezepten</a>';
+}
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Don't forget to properly escape your values before you send them to DB
   // to prevent SQL injection attacks.
 
   $bezeichnung = $__POST['Bezeichnung'];
-  $anzahl = $__POST['Anzahl'];
+  $anzahl = $__POST['Anzahl']>0;
 
 
   $query = "INSERT INTO `Besitzt` (`Bezeichnung`, `Benutzername`, `Anzahl`) VALUES (?, ?, ?)";
