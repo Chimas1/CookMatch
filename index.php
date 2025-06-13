@@ -4,14 +4,11 @@ session_start();
 // Optional: Login-Prüfung
 if (!isset($_SESSION['userid'])) {
     echo "Bitte zuerst einloggen.";
-    echo '<a href="rezepte-suchen.php">Rezepte suchen</a> <br>';
-    echo '<a href="Nutzer.php">Zum Profil</a>';
-    exit;
-
-
 
 }
 
+echo '<a href="rezepte-suchen.php">Rezepte suchen</a> <br>';
+    echo '<a href="Nutzer.php">Zum Profil</a>';
     ?>
  
 <!DOCTYPE html>
