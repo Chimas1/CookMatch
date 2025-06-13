@@ -43,8 +43,7 @@ if(isset($_GET['register'])) {
       $db = new Database();
       $db->connect();
       $result = $db->select("SELECT Benutzername FROM Nutzer WHERE `E-Mail` = ?", "s", $email);
-      print_r('E-Mail: ');
-        print_r($result);
+      
         if($result->num_rows > 0) {
             die ("Diese E-Mail-Adresse ist bereits vergeben <br> <a href='login.php'>Zum Login</a>");
             $error = true;
@@ -54,8 +53,7 @@ if(isset($_GET['register'])) {
       $result = null;
       
       $result = $db->select("SELECT Benutzername FROM Nutzer WHERE `Benutzername` = ?", "s", $benutzername);
-        print_r('Benutzername: ');
-        print_r($result);
+    
         if($result->num_rows > 0) {
             die ("Dieser Benutzername ist bereits vergeben <br> <a href='registrieren.php'>Nochmal versuchen</a>");
             $error = true;
@@ -69,15 +67,13 @@ if(isset($_GET['register'])) {
 
       if($result) {
             echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
-            $db-> disconnect();
-
             $showFormular = false;
         } else {
             echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
         }
  
     }
-$db-> disconnect();
+$db->disconnect();
 
 }
  
