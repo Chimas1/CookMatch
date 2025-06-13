@@ -6,6 +6,8 @@ if (!isset($_SESSION['userid'])) {
     echo "Bitte zuerst einloggen.";
     echo '<a href="rezepte-suchen.php">Rezepte suchen</a>';
     echo '<a href="Nutzer.php">Zum Profil</a>';
+    exit;
+
 
 
 }
