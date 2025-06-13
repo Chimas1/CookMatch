@@ -24,5 +24,3 @@ if (!isset($_SESSION['user_id'])) {
     </form>
 </body>
 </html>
- echo "<a href='interaktionen-mit-rezepten/anzeige-von-rezepte.php'>Rezepte anzeigen</a>";
-?>
