@@ -15,7 +15,7 @@ if ($userResult && $row = $userResult->fetch_assoc()) {
     $userpasswort = $row["Passwort"];
     if (password_verify($passwort, $userpasswort)) {
         $_SESSION['userid'] = $username;
-        header("Location: geheim.php");
+        header("Location: index.php");
         exit;
     } else {
         $errorMessage = "E-Mail oder Passwort war ungültig<br>";
