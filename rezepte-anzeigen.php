@@ -56,7 +56,7 @@ if ($row = $rezept->fetch_assoc()) {
     
  echo "<h3>Kochutensilien:</h3><ul>";
     while ($u = $utensilien->fetch_assoc()) {
-        echo "<li>" . htmlspecialchars($u['Title']) . "</li>";
+        echo "<li>" . htmlspecialchars($u['Titel']) . "</li>";
     }
     echo "</ul>";
 
