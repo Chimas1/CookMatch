@@ -61,7 +61,7 @@ if ($row = $rezept->fetch_assoc()) {
     echo "</ul>";
 
  // Anweisungen
-   echo <div class='section-title'>Zubereitung</div>;
+   echo "<div class='section-title'>Zubereitung</div>";
     $anweisungen = $db->select("SELECT * FROM Anweisung, Rezept WHERE Anweisung.Name=Rezept.Name and Rezept.Name= ? ORDER BY Anweisung.ID", "s", $id);
     echo <ol class= '<h3>Anweisungen:</h3><ol>';
     while ($a = $anweisungen->fetch_assoc()) {
