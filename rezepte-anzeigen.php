@@ -47,6 +47,13 @@ if ($row = $rezept->fetch_assoc()) {
         <ul class='zutaten'>";
 
     while ($z = $zutaten->fetch_assoc()) {
+     if (isset($_POST['Zutat'])) {
+    $zutat = $_POST['Zutat'];
+    // use $zutat here
+} else {
+    // handle the case when 'Zutat' is not set
+    $zutat = null; // or a default value
+}
         echo "<li>" . htmlspecialchars($z['Menge']) . " " . htmlspecialchars($z['Einheit']) . " " . htmlspecialchars($z['Zutat']) . "</li>";
     }
     echo "</ul>";
