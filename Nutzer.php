@@ -8,7 +8,7 @@ if (!isset($_SESSION['userid'])) {
 
 }
 
-$user = $_SESSION['user'];
+$user = $_SESSION['userid'];
 ?>
 
 <!DOCTYPE html>
