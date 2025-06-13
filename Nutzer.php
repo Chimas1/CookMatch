@@ -56,6 +56,6 @@ $db->disconnect();
         <?php endif; ?>        <div class="profil-name"><?php echo htmlspecialchars($row['Benutzername']); ?></div>
         <div class="profil-email"><?php echo htmlspecialchars($row['E-Mail']); ?></div>
     </div>
-    <a href="index.php">Zurück zur Startseite>
+    <a href="index.php">Zurück zur Startseite
 </body>
 </html>
