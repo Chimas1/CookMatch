@@ -4,10 +4,10 @@ session_start();
 
 if (!isset($_SESSION['userid'])) {
     echo "Bitte zuerst einloggen.";
+    echo '<a href="login.php">Bitte einloggen</a>';
 
 }
 
-echo '<a href="rezepte-suchen.php">Rezepte suchen</a> <br> <a href="Nutzer.php">Zum Profil</a>';
 
     ?>
  
@@ -21,6 +21,7 @@ echo '<a href="rezepte-suchen.php">Rezepte suchen</a> <br> <a href="Nutzer.php">
     <h1>Willkommen bei CookMatch!</h1>
     <p>
         <a href="rezepte-suchen.php">Zu den Rezepten</a>
+        <a href="Nutzer.php">Zum Profil</a>
     </p>
     <form action="logout.php" method="post" style="display: inline;">
         <button type="submit">Logout</button>
