@@ -51,9 +51,9 @@ $row = $result->fetch_assoc();
 </head>
 <body>
     <div class="profil-container">
-        <img src="<?php echo htmlspecialchars($user['profilbild']); ?>" alt="Profilbild" class="profilbild">
-        <div class="profil-name"><?php echo htmlspecialchars($user['name']); ?></div>
-        <div class="profil-email"><?php echo htmlspecialchars($user['email']); ?></div>
+        <img src="<?php echo htmlspecialchars($row['Profilbild']); ?>" alt="Profilbild" class="profilbild">
+        <div class="profil-name"><?php echo htmlspecialchars($row['Benutzername']); ?></div>
+        <div class="profil-email"><?php echo htmlspecialchars($row['E-Mail']); ?></div>
     </div>
 </body>
 </html>
