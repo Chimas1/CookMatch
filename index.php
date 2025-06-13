@@ -2,11 +2,11 @@
 <?php
 session_start();
 // Optional: Login-Prüfung
-if (!isset($_SESSION['benutzername'])) {
+if (!isset($_SESSION['userid'])) {
     die("Bitte zuerst einloggen.");
 }
-    
-?>
+
+    ?>
  
 <!DOCTYPE html>
 <html lang="de">
