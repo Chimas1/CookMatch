@@ -2,9 +2,10 @@
 session_start();
 
 // Prüfen, ob der Nutzer eingeloggt ist
-if (!isset($_SESSION['user'])) {
-    echo "Bitte einloggen, um das Profil zu sehen.";
-    exit;
+if (!isset($_SESSION['userid'])) {
+    echo "Bitte zuerst einloggen.";
+    echo '<a href="login.php">Bitte einloggen</a>';
+
 }
 
 $user = $_SESSION['user'];
