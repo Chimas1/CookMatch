@@ -5,7 +5,6 @@ session_start();
 if (!isset($_SESSION['userid'])) {
     echo "Bitte zuerst einloggen.";
     echo '<a href="rezepte-suchen.php">Rezepte suchen</a>';
-    echo '<a href="rezepte-anzeigen.php?Name=Pizza">Direkt zur pizza</a>';
 
 }
 
