@@ -53,9 +53,10 @@ if ($row = $rezept->fetch_assoc()) {
 
     // Kochutensilien
     $utensilien = $db->select("SELECT * FROM Kochutensilien, Braucht, Anweisung, Rezept WHERE Kochutensilien.Titel=Braucht.Titel and Braucht.ID=Anweisung.ID and Anweisung.Name=Rezept.Name and Rezept.Name = ?", "s", $id);
-    print_r($utensilien);
+    
  echo "<h3>Kochutensilien:</h3><ul>";
     while ($u = $utensilien->fetch_assoc()) {
+     print_r($u);
         echo "<li>" . htmlspecialchars($u['Name']) . "</li>";
     }
     echo "</ul>";
