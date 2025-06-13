@@ -9,8 +9,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['login'])) {
       $db = new Database();
       $db->connect();
  
-    $userpasswort = $db->select("SELECT Passwort FROM Nutzer WHERE email = ?", "s", $email);
-    $username = $db->select("SELECT Benutzername FROM Nutzer WHERE email = ?", "s", $email);
+    $userpasswort = $db->select("SELECT Passwort FROM Nutzer WHERE E-Mail = ?", "s", $email);
+    $username = $db->select("SELECT Benutzername FROM Nutzer WHERE E-Mail = ?", "s", $email);
 
         
     //Überprüfung des Passworts
