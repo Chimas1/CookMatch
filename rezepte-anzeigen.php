@@ -6,7 +6,7 @@
 
 // Primärschlüssel aus z. B. URL holen
 $id = htmlspecialchars($_GET['Name']); // immer validieren!
-
+echo htmlspecialchars($row['Name'])
 // SQL-Abfrage vorbereiten
 $db = new Database();
 $db->connect();
