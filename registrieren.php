@@ -7,7 +7,8 @@ require_once 'Database.php';
 <head>
   <title>Registrierung</title>    
 </head> 
-<body>
+<body
+   style="background-color:#FFA500;"> 
  
 <?php
 $showFormular = true; //Variable ob das Registrierungsformular anezeigt werden soll
