@@ -49,7 +49,8 @@ $db->disconnect();
         }
     </style>
 </head>
-<body>
+<body
+     style="background-color:#FFA500;">
     <div class="profil-container">
         <?php if (!empty($row['Profilbild'])): ?>
         <img src="<?php echo htmlspecialchars($row['Profilbild']); ?>" alt="Profilbild" class="profilbild">
