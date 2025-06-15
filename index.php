@@ -17,13 +17,14 @@ if (!isset($_SESSION['userid'])) {
     <meta charset="UTF-8">
     <title>Startseite</title>
 </head>
-<body>
+<body
+     style="background-color:#FFA500;">
     <h1>Willkommen bei CookMatch!</h1>
     <p>
-        <a href="rezepte-suchen.php">Zu den Rezepten</a> <br/>
-        <a href="Nutzer.php">Zum Profil</a> <br/>
-        <a href="rezepte-anzeigen.php?Name=Pizza">Pizza</a> <br/>
-        <a href="Favoriten.php">Zu deinen Favoriten</a> <br/>
+       <a href="rezepte-suchen.php"style="color:black;">Zu den Rezepten</a> <br/>
+        <a href="Nutzer.php"style="color:black;">Zum Profil</a> <br/>
+        <a href="rezepte-anzeigen.php?Name=Pizza"style="color:black;">Pizza</a> <br/>
+        <a href="Favoriten.php"style="color:black;">Zu deinen Favoriten</a> <br/>
     </p>
     <form action="logout.php" method="post" style="display: inline;">
         <button type="submit">Logout</button>
