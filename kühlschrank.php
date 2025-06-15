@@ -56,13 +56,18 @@ $db->disconnect();
   <head>
     
   </head>
-  <body>
+  <body
+         style="background-color:#FFA500;">
     
     <h1>Kühlschrank</h1>
     
   <form action="insert.php" method="post">
-    Lebensmittel: <input type="text" name = "Bezeichnung" /><br/>
-    Anzahl: <input type="number" name = "Anzahl" /><br/>
+    Lebensmittel: <input type="text" name = "Bezeichnung" /><br/><br>
+   
+  <!-- Anzahl -->
+  <label>Anzahl:</label>
+  <input type="number" name="Anzahl" min="1"><br><br>
+        
  <input type="submit" />
 </form>
     
