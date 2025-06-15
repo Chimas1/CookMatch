@@ -28,7 +28,8 @@ $db->connect();
         .anleitung { background: #fdf3e7; padding: 12px; border-radius: 8px;}
     </style>
 </head>
-<body>
+<body
+  style="background-color:#FFA500;">
     <div class="container">
 <?php
 // Rezept-Grunddaten
