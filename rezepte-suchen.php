@@ -21,7 +21,8 @@ $db->disconnect();
    <div style="position:absolute; top:10px; right:10px;">
 </div>
 </head>
-<body>
+<body
+     style="background-color:#FFA500;">
     <form method="get" action="rezept-suchen.php">
         <input type="text" name="suchbegriff" value="<?php echo htmlspecialchars($suchbegriff); ?>" placeholder="Rezeptname eingeben">
         <button type="submit">Suchen</button>
