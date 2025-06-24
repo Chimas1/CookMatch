@@ -14,9 +14,10 @@ if (!empty($suchbegriff)) {
     $sql = "SELECT name FROM Rezept WHERE name LIKE '%$suchbegriff_esc%'";
     $result = $conn->query($sql);
     
-    if ($rezepte->num_rows == 1) {
-        $row = $rezepte->fetch_assoc();
-        header("Location: rezepte-anzeigen.php?Name=" . urlencode($row['Name']));
+    if ($result && $result->num_rows == 1) {
+        $row = $result->fetch_assoc();
+        // Prüfe Groß-/Kleinschreibung!
+        header("Location: rezepte-anzeigen.php?Name=" . urlencode($row['name']));
         exit;
     }
 }
