@@ -3,13 +3,18 @@ require_once 'Database.php';
 $db = new Database();
 $conn = $db->connect();
 $rezeptname ="";
+$suchbegriff = "";
 
-if (isset($_GET['rezeptname'])) {
-    $suchbegriff = $conn->real_escape_string($_GET['rezeptname']);
-  
-    $sql = "SELECT name FROM Rezept WHERE name LIKE '%$rezeptname%'";
+if (isset($_GET['suchbegriff'])) {
+    $suchbegriff = $_GET['suchbegriff'];
+}
+
+if (!empty($suchbegriff)) {
+    $suchbegriff_esc = $conn->real_escape_string($suchbegriff);
+    $sql = "SELECT name FROM Rezept WHERE name LIKE '%$suchbegriff_esc%'";
     $result = $conn->query($sql);
-} 
+}
+
 $db->disconnect();
 ?>
 
