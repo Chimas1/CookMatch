@@ -13,6 +13,12 @@ if (!empty($suchbegriff)) {
     $suchbegriff_esc = $conn->real_escape_string($suchbegriff);
     $sql = "SELECT name FROM Rezept WHERE name LIKE '%$suchbegriff_esc%'";
     $result = $conn->query($sql);
+    
+    if ($rezepte->num_rows == 1) {
+        $row = $rezepte->fetch_assoc();
+        header("Location: rezepte-anzeigen.php?Name=" . urlencode($row['Name']));
+        exit;
+    }
 }
 
 $db->disconnect();
