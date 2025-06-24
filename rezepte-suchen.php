@@ -33,22 +33,22 @@ $db->disconnect();
         <input type="text" name="suchbegriff" value="<?php echo htmlspecialchars($suchbegriff); ?>" placeholder="Rezeptname eingeben">
         <button type="submit">Suchen</button>
     </form>
-<h2>Suchergebnisse:</h2>
-    <?php if (isset($_GET['Rezeptname'])): ?>
-         <?php if ($result->num_rows > 0): ?>
-            <ul>
-         <?php while ($row = $result->fetch_assoc()): ?>
+<?php if (!empty($suchbegriff) && isset($result)): ?>
+    <h2>Suchergebnisse:</h2>
+    <?php if ($result->num_rows > 0): ?>
+        <ul>
+        <?php while ($row = $result->fetch_assoc()): ?>
             <li>
                 <a href="rezepte-anzeigen.php?Name=<?php echo urlencode($row['name']); ?>">
-        <?php echo htmlspecialchars($row['name']); ?>
+                    <?php echo htmlspecialchars($row['name']); ?>
                 </a>
             </li>
-        <?php endwhile; ?>        
-            </ul>
-        <?php else: ?>
-            <p>Keine Rezept unter dem Namen gefunden.</p>
-        <?php endif; ?>
+        <?php endwhile; ?>
+        </ul>
+    <?php else: ?>
+        <p>Kein Rezept unter diesem Namen gefunden.</p>
     <?php endif; ?>
+<?php endif; ?>
 </body>
 </html>
 
