@@ -172,8 +172,8 @@ if (!empty($where)) {
 }
 
 // DB-Abfrage (Beispiel mit PDO)
-$stmt = $pdo->prepare($sql);
-$stmt->execute($params);
-$rezepte = $stmt->fetchAll();
+//$stmt = $pdo->prepare($sql);
+//$stmt->execute($params);
+//$rezepte = $stmt->fetchAll();
 ?>
         
