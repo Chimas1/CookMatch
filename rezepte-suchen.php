@@ -14,12 +14,6 @@ if (!empty($suchbegriff)) {
     $sql = "SELECT name FROM Rezept WHERE name LIKE '%$suchbegriff_esc%'";
     $result = $conn->query($sql);
     
-    if ($result && $result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        // Prüfe Groß-/Kleinschreibung!
-        header("Location: rezepte-anzeigen.php?Name=" . urlencode($row['name']));
-        exit;
-    }
 }
 
 $db->disconnect();
@@ -41,12 +35,16 @@ $db->disconnect();
     </form>
 <h2>Suchergebnisse:</h2>
     <?php if (isset($_GET['Rezeptname'])): ?>
-            <?php if ($result->num_rows > 0): ?>
+         <?php if ($result->num_rows > 0): ?>
             <ul>
-                <?php while ($row = $result->fetch_assoc()): ?>
-                    <li> Name: <?php echo htmlspecialchars($row['name']); ?></li>
-    <?php endwhile; ?>        
-                </ul>
+         <?php while ($row = $result->fetch_assoc()): ?>
+            <li>
+                <a href="rezepte-anzeigen.php?Name=<?php echo urlencode($row['name']); ?>">
+        <?php echo htmlspecialchars($row['name']); ?>
+                </a>
+            </li>
+        <?php endwhile; ?>        
+            </ul>
         <?php else: ?>
             <p>Keine Rezept unter dem Namen gefunden.</p>
         <?php endif; ?>
