@@ -54,9 +54,10 @@ $db->disconnect();
   <label>Kulinarische Herkunft:</label>
   <select name="herkunft">
     <option value="">Alle</option>
-    <option value="italienisch">Italienisch</option>
-    <option value="deutsch">Deutsch</option>
-    <option value="asiatisch">Asiatisch</option>
+    <option value="italien">Italien</option>
+    <option value="usa">Usa</option>
+    <option value="europa">Europa</option>
+    <option value="regional">Regional</option>
     <!-- ...Erweitern nach Bedarf -->
   </select><br>
 
