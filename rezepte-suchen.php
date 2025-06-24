@@ -2,7 +2,7 @@
 require_once 'Database.php';
 $db = new Database();
 $conn = $db->connect();
-$rezeptname ="";
+
 $suchbegriff = "";
 
 if (isset($_GET['suchbegriff'])) {
