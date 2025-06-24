@@ -108,6 +108,7 @@ $db->disconnect();
   <input type="submit" value="Filtern">
 </form>
 
+<?php
 $where = [];
 $params = [];
 
@@ -174,5 +175,5 @@ if (!empty($where)) {
 $stmt = $pdo->prepare($sql);
 $stmt->execute($params);
 $rezepte = $stmt->fetchAll();
-
+?>
         
