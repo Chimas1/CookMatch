@@ -84,7 +84,7 @@ $db->disconnect();
     <option value="">Alle</option>
     <option value="vorspeise">Vorspeise</option>
     <option value="hauptspeise">Hauptspeise</option>
-    <option value="dessert">Dessert</option>
+    <option value="nachspeise">Nachspeise</option>
     <!-- ...Erweitern nach Bedarf -->
   </select><br>
 
