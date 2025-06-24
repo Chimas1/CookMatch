@@ -4,9 +4,9 @@ $db = new Database();
 $conn = $db->connect();
 $rezeptname ="";
 
+$suchbegriff = $conn->real_escape_string($_GET['rezeptname']);
 if (isset($_GET['rezeptname'])) {
-    $suchbegriff = $conn->real_escape_string($_GET['rezeptname']);
-    
+  
     $sql = "SELECT name FROM Rezept WHERE name LIKE '%$rezeptname%'";
     $result = $conn->query($sql);
 } 
