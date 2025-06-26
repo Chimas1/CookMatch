@@ -29,10 +29,10 @@ $db->disconnect();
 </head>
 <body
      style="background-color:#FFA500;">
-    <form method="get" action="rezept-suchen.php">
-        <input type="text" name="suchbegriff" value="<?php echo htmlspecialchars($suchbegriff); ?>" placeholder="Rezeptname eingeben">
-        <button type="submit">Suchen</button>
-    </form>
+  <form method="get" action="rezepte-anzeigen.php">
+    <input type="text" name="suchbegriff" value="<?php echo htmlspecialchars($suchbegriff); ?>" placeholder="Rezeptname eingeben">
+    <button type="submit">Suchen</button>
+</form>
 <?php if (!empty($suchbegriff) && isset($result)): ?>
     <h2>Suchergebnisse:</h2>
     <?php if ($result->num_rows > 0): ?>
