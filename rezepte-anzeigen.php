@@ -108,7 +108,8 @@ if ($row = $rezept->fetch_assoc()) {
     while ($b = $bewertungen->fetch_assoc()) {
         $anzahl++;
         $summe += $b['Sterne'];
-        echo "<div>" . htmlspecialchars($b['Benutzername']) . ": " . htmlspecialchars($b['Sterne']) . " Sterne - ".htmlspecialchars($b['Kommentar'])."</div>";
+     $kommentar = $b['Kommentar'] === null ? "Kein Kommentar vorhanden" : htmlspecialchars($b['Kommentar']);
+        echo "<div>" . htmlspecialchars($b['Benutzername']) . ": " . htmlspecialchars($b['Sterne']) . " Sterne - ".$kommentar."</div>";
     }
     if ($anzahl > 0) {
         $schnitt = round($summe / $anzahl, 2);
