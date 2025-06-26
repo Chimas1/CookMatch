@@ -10,15 +10,15 @@ $id = htmlspecialchars($_GET['Name']); // immer validieren!
 $db = new Database();
 $conn = $db->connect();
 
-$suchbegriff = "";
-if (isset($_GET['suchbegriff'])) {
-    $suchbegriff = $_GET['suchbegriff'];
+$name = "";
+if (isset($_GET['Name'])) {
+    $name = $_GET['Name'];
 }
 
 $result = null;
-if (!empty($suchbegriff)) {
-    $suchbegriff_esc = $conn->real_escape_string($suchbegriff);
-    $sql = "SELECT name FROM Rezept WHERE name LIKE '%$suchbegriff_esc%'";
+if (!empty($name)) {
+    $name_esc = $conn->real_escape_string($name);
+    $sql = "SELECT name FROM Rezept WHERE name LIKE '%$name_esc%'";
     $result = $conn->query($sql);
 }
 ?>
@@ -46,11 +46,11 @@ if (!empty($suchbegriff)) {
 
 //Suche überprüfen
 <form method="get" action="rezepte-anzeigen.php">
-        <input type="text" name="suchbegriff" value="<?php echo htmlspecialchars($suchbegriff); ?>" placeholder="Rezeptname eingeben">
+        <input type="text" name="Name" value="<?php echo htmlspecialchars($name); ?>" placeholder="Rezeptname eingeben">
         <button type="submit">Suchen</button>
     </form>
 
-    <?php if (!empty($suchbegriff) && isset($result)): ?>
+    <?php if (!empty($name) && isset($result)): ?>
         <h2>Suchergebnisse:</h2>
         <?php if ($result->num_rows > 0): ?>
             <ul>
