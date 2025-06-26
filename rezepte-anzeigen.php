@@ -8,7 +8,19 @@
 $id = htmlspecialchars($_GET['Name']); // immer validieren!
 // SQL-Abfrage vorbereiten
 $db = new Database();
-$db->connect();
+$conn = $db->connect();
+
+$suchbegriff = "";
+if (isset($_GET['suchbegriff'])) {
+    $suchbegriff = $_GET['suchbegriff'];
+}
+
+$result = null;
+if (!empty($suchbegriff)) {
+    $suchbegriff_esc = $conn->real_escape_string($suchbegriff);
+    $sql = "SELECT name FROM Rezept WHERE name LIKE '%$suchbegriff_esc%'";
+    $result = $conn->query($sql);
+}
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -31,34 +43,8 @@ $db->connect();
 <body
   style="background-color:#FFA500;">
     <div class="container">
+     
 <?php
-//Prüfung der Suchfunktion nach Rezepten
-$suchbegriff = "";
-if (isset($_GET['suchbegriff'])) {
-    $suchbegriff = $_GET['suchbegriff'];
-}
-
-if (!empty($suchbegriff)) {
-    $suchbegriff_esc = $conn->real_escape_string($suchbegriff);
-    $sql = "SELECT name FROM Rezept WHERE name LIKE '%$suchbegriff_esc%'";
-    $result = $conn->query($sql);
-}
-?>
-
-<!-- HTML-Anzeige -->
-<?php if (!empty($suchbegriff) && isset($result)): ?>
-    <h2>Suchergebnisse:</h2>
-    <?php if ($result->num_rows > 0): ?>
-        <ul>
-        <?php while ($row = $result->fetch_assoc()): ?>
-            <li><?php echo htmlspecialchars($row['name']); ?></li>
-        <?php endwhile; ?>
-        </ul>
-    <?php else: ?>
-        <p>Kein Rezept unter diesem Namen gefunden.</p>
-    <?php endif; ?>
-<?php endif; ?>
-
 // Rezept-Grunddaten
 $zeit = $db->select("SELECT SUM(Zeit) FROM Rezept, Anweisung WHERE Rezept.Name = Anweisung.Name and Rezept.Name = ?", "s", $id)->fetch_assoc();
 
