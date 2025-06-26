@@ -3,15 +3,15 @@ require_once 'Database.php';
 $db = new Database();
 $conn = $db->connect();
 
-$suchbegriff = "";
+$name = "";
 
-if (isset($_GET['suchbegriff'])) {
-    $suchbegriff = $_GET['suchbegriff'];
+if (isset($_GET['Name'])) {
+    $name = $_GET['Name'];
 }
 
-if (!empty($suchbegriff)) {
-    $suchbegriff_esc = $conn->real_escape_string($suchbegriff);
-    $sql = "SELECT name FROM Rezept WHERE name LIKE '%$suchbegriff_esc%'";
+if (!empty($name)) {
+    $name_esc = $conn->real_escape_string($name);
+    $sql = "SELECT name FROM Rezept WHERE name LIKE '%$name_esc%'";
     $result = $conn->query($sql);
     
 }
@@ -30,7 +30,7 @@ $db->disconnect();
 <body
      style="background-color:#FFA500;">
   <form method="get" action="rezepte-anzeigen.php">
-    <input type="text" name="suchbegriff" value="<?php echo htmlspecialchars($suchbegriff); ?>" placeholder="Rezeptname eingeben">
+    <input type="text" name="Name" value="<?php echo htmlspecialchars($suchbegriff); ?>" placeholder="Rezeptname eingeben">
     <button type="submit">Suchen</button>
 </form>
 <?php if (!empty($suchbegriff) && isset($result)): ?>
