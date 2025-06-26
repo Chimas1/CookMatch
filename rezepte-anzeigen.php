@@ -43,6 +43,25 @@ if (!empty($suchbegriff)) {
 <body
   style="background-color:#FFA500;">
     <div class="container">
+
+//Suche überprüfen
+<form method="get" action="rezepte-anzeigen.php">
+        <input type="text" name="suchbegriff" value="<?php echo htmlspecialchars($suchbegriff); ?>" placeholder="Rezeptname eingeben">
+        <button type="submit">Suchen</button>
+    </form>
+
+    <?php if (!empty($suchbegriff) && isset($result)): ?>
+        <h2>Suchergebnisse:</h2>
+        <?php if ($result->num_rows > 0): ?>
+            <ul>
+            <?php while ($row = $result->fetch_assoc()): ?>
+                <li><?php echo htmlspecialchars($row['name']); ?></li>
+            <?php endwhile; ?>
+            </ul>
+        <?php else: ?>
+            <p>Kein Rezept unter diesem Namen gefunden.</p>
+        <?php endif; ?>
+    <?php endif; ?>     
      
 <?php
 // Rezept-Grunddaten
