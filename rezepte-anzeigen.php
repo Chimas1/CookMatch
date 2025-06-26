@@ -32,6 +32,33 @@ $db->connect();
   style="background-color:#FFA500;">
     <div class="container">
 <?php
+//Prüfung der Suchfunktion nach Rezepten
+$suchbegriff = "";
+if (isset($_GET['suchbegriff'])) {
+    $suchbegriff = $_GET['suchbegriff'];
+}
+
+if (!empty($suchbegriff)) {
+    $suchbegriff_esc = $conn->real_escape_string($suchbegriff);
+    $sql = "SELECT name FROM Rezept WHERE name LIKE '%$suchbegriff_esc%'";
+    $result = $conn->query($sql);
+}
+?>
+
+<!-- HTML-Anzeige -->
+<?php if (!empty($suchbegriff) && isset($result)): ?>
+    <h2>Suchergebnisse:</h2>
+    <?php if ($result->num_rows > 0): ?>
+        <ul>
+        <?php while ($row = $result->fetch_assoc()): ?>
+            <li><?php echo htmlspecialchars($row['name']); ?></li>
+        <?php endwhile; ?>
+        </ul>
+    <?php else: ?>
+        <p>Kein Rezept unter diesem Namen gefunden.</p>
+    <?php endif; ?>
+<?php endif; ?>
+
 // Rezept-Grunddaten
 $zeit = $db->select("SELECT SUM(Zeit) FROM Rezept, Anweisung WHERE Rezept.Name = Anweisung.Name and Rezept.Name = ?", "s", $id)->fetch_assoc();
 
@@ -40,7 +67,6 @@ if ($row = $rezept->fetch_assoc()) {
     echo "<div class='rezept-title'>". htmlspecialchars($row['Name']) ."</div>";
     echo "<div class='meta'>Vorbereitungszeit: ".$zeit['SUM(Zeit)'] === null ? 0 : htmlspecialchars($zeit['SUM(Zeit)'])." Min</div>";
    
-    
     // Zutatenliste
     $zutaten = $db->select("SELECT * FROM Lebensmittel, Enthält, Anweisung,Rezept WHERE Lebensmittel.Bezeichnung=Enthält.Bezeichnung and Enthält.ID=Anweisung.ID and Anweisung.Name= Rezept.Name and Rezept.Name = ?", "s", $id);
     echo "<h3>Zutaten:</h3><ul>"; 
