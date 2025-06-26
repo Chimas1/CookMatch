@@ -34,6 +34,7 @@ $db->disconnect();
         <button type="submit">Suchen</button>
     </form>
 <?php if (!empty($suchbegriff) && isset($result)): ?>
+    
     <h2>Suchergebnisse:</h2>
     <?php if ($result->num_rows > 0): ?>
         <ul>
