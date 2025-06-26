@@ -102,7 +102,7 @@ if ($row = $rezept->fetch_assoc()) {
     echo "</ol>";
 
     // Bewertungen
-    $bewertungen = $db->select("SELECT * FROM Bewertet, Rezept WHERE Bewertet.Name=Rezept.Name and Rezept.Name= ?", "s", $id);
+    $bewertungen = $db->select("SELECT Bewertet.Benutzername as Benutzername, Sterne, Kommentar FROM Bewertet, Rezept WHERE Bewertet.Name=Rezept.Name and Rezept.Name= ?", "s", $id);
     echo "<h3>Bewertungen:</h3>";
     $anzahl = 0; $summe = 0;
     while ($b = $bewertungen->fetch_assoc()) {
