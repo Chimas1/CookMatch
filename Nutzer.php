@@ -44,14 +44,14 @@ if (isset($_POST['update'])) {
             "UPDATE Nutzer SET Benutzername = ?, Profilbild = ? WHERE Benutzername = ?",
             "sss",
             [$neuerBenutzername, $profilbildPfad, $userid]
-        )
+        );
 
         // Username in der Session aktualisieren
         $_SESSION['userid'] = $neuerBenutzername;
         // Seite neu laden, damit Änderungen sichtbar sind
         header("Location: Nutzer.php");
         exit;
-    };
+    }
     }
     $db->disconnect();
 
