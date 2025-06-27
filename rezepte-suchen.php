@@ -5,11 +5,10 @@ $db = new Database();
 $conn = $db->connect();
 
 $name = isset($_GET['name']) ? $_GET['name'] : '';
-$rezeptDetails = null;
 $suchErgebnisse = null;
 
 if (!empty($name)) {
-    // Alle Rezepte suchen, die ähnlich heißen
+    // Unscharfe Suche (LIKE, nicht exakt!)
     $name_esc = $conn->real_escape_string($name);
     $sql = "SELECT name FROM Rezept WHERE name LIKE '%$name_esc%'";
     $suchErgebnisse = $conn->query($sql);
@@ -33,16 +32,13 @@ if (!empty($name)) {
 <div class="container">
 <?php
 if (!empty($name)) {
-    // Trefferliste
     if ($suchErgebnisse && $suchErgebnisse->num_rows > 0) {
         echo '<h2>Suchergebnisse:</h2><ul>';
         while ($row = $suchErgebnisse->fetch_assoc()) {
             echo '<li><a href="rezepte-anzeigen.php?name=' . urlencode($row['name']) . '">' . htmlspecialchars($row['name']) . '</a></li>';
         }
         echo '</ul>';
-    }
-    // Kein Treffer
-    else {
+    } else {
         echo '<p>Kein Rezept unter diesem Namen gefunden.</p>';
     }
 }
