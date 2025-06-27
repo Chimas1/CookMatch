@@ -1,5 +1,5 @@
 <h2>Rezept erstellen</h2>
-<form method="POST">
+<form method="POST" >
     <label>Name des Rezepts:<br>
         <input type="text" name="Name" required>
     </label><br><br>
@@ -50,6 +50,7 @@
 </form>
 
 <?php
+print_r($__POST);
 // Formularverarbeitung nach dem Absenden
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Name          = isset($_POST["Name"]) ? htmlspecialchars($_POST["Name"]) : '';
