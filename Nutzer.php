@@ -51,7 +51,7 @@ if (isset($_POST['update'])) {
         // Seite neu laden, damit Änderungen sichtbar sind
         header("Location: Nutzer.php");
         exit;
-    }
+    };
     }
     $db->disconnect();
 
