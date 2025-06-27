@@ -21,7 +21,7 @@ $row = $result->fetch_assoc();
 if (isset($_POST['update'])) {
     $neuerBenutzername = trim($_POST['benutzername']);
 
-    // Prüfen, ob der neue Benutzername bereits existiert (außer der eigene)
+    // Prüfen, ob der neue Benutzername 
         $result = $db->select("SELECT Benutzername FROM Nutzer WHERE `Benutzername` = ?", "s", $neuerBenutzername);
         if(!$result->num_rows > 0) {
             $fehler = "Benutzername existiert bereits!";
@@ -44,7 +44,7 @@ if (isset($_POST['update'])) {
             "UPDATE Nutzer SET Benutzername = ?, Profilbild = ? WHERE Benutzername = ?",
             "sss",
             [$neuerBenutzername, $profilbildPfad, $userid]
-        );
+        )
 
         // Username in der Session aktualisieren
         $_SESSION['userid'] = $neuerBenutzername;
