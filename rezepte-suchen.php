@@ -13,13 +13,6 @@ if (!empty($name)) {
     $name_esc = $conn->real_escape_string($name);
     $sql = "SELECT name FROM Rezept WHERE name LIKE '%$name_esc%'";
     $suchErgebnisse = $conn->query($sql);
-
-    // Prüfen, ob ein exakt passendes Rezept existiert
-    $sqlDetail = "SELECT * FROM Rezept WHERE name = '$name_esc'";
-    $detailsRes = $conn->query($sqlDetail);
-    if ($detailsRes && $detailsRes->num_rows === 1) {
-        $rezeptDetails = $detailsRes->fetch_assoc();
-    }
 }
 ?>
 
@@ -40,12 +33,7 @@ if (!empty($name)) {
 <div class="container">
 <?php
 if (!empty($name)) {
-    // Detailansicht bei exaktem Treffer
-    if ($rezeptDetails) {
-        echo '<h2>' . htmlspecialchars($rezeptDetails['name']) . '</h2>';
-        // ... Details hier anzeigen ...
-    }
-    // Trefferliste bei unscharfer Suche
+    // Trefferliste
     elseif ($suchErgebnisse && $suchErgebnisse->num_rows > 0) {
         echo '<h2>Suchergebnisse:</h2><ul>';
         while ($row = $suchErgebnisse->fetch_assoc()) {

@@ -7,4 +7,7 @@ if (!isset($_SESSION['userid'])) {
     echo '<a href="login.php">Bitte einloggen</a>';
 }
 
+$db = new Database();
+$db->connect();
+    
 ?>
