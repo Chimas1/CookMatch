@@ -17,11 +17,12 @@ if (isset($_GET['Benutzername'])) {
 $db = new Database();
 $db->connect();
 
+$userid = $_SESSION['user_id'];
 $result = $db->select("SELECT Profilbild, Benutzername, `E-Mail` FROM Nutzer WHERE Benutzername = ?", "s" ,  $profilBenutzername);
 $row = $result->fetch_assoc();
 
 
-if (isset($_POST['update'])) {
+if ($userid == $profilBenutzername && isset($_POST['update'])) {
     $neuerBenutzername = trim($_POST['benutzername']);
 
     // Prüfen, ob der neue Benutzername 
