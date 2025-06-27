@@ -9,10 +9,12 @@ $id = htmlspecialchars($_GET['Name']); // immer validieren!
 // SQL-Abfrage vorbereiten
 $db = new Database();
 $conn = $db->connect();
+?>
 
+<?php
 $name = "";
-if (isset($_GET['Name'])) {
-    $name = $_GET['Name'];
+if (isset($_GET['name'])) {
+    $name = $_GET['name'];
 }
 
 $result = null;
@@ -22,6 +24,7 @@ if (!empty($name)) {
     $result = $conn->query($sql);
 }
 ?>
+ 
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -45,18 +48,22 @@ if (!empty($name)) {
     <div class="container">
 
 //Suche überprüfen
-    <?php if (!empty($name) && isset($result)): ?>
-        <h2>Suchergebnisse:</h2>
-        <?php if ($result->num_rows > 0): ?>
-            <ul>
-            <?php while ($row = $result->fetch_assoc()): ?>
-                <li><?php echo htmlspecialchars($row['name']); ?></li>
-            <?php endwhile; ?>
-            </ul>
-        <?php else: ?>
-            <p>Kein Rezept unter diesem Namen gefunden.</p>
-        <?php endif; ?>
-    <?php endif; ?>     
+   <?php if (!empty($name) && isset($result)): ?>
+    <h2>Suchergebnisse:</h2>
+    <?php if ($result->num_rows > 0): ?>
+        <ul>
+        <?php while ($row = $result->fetch_assoc()): ?>
+            <li>
+                <a href="rezepte-anzeigen.php?name=<?php echo urlencode($row['name']); ?>">
+                    <?php echo htmlspecialchars($row['name']); ?>
+                </a>
+            </li>
+        <?php endwhile; ?>
+        </ul>
+    <?php else: ?>
+        <p>Kein Rezept unter diesem Namen gefunden.</p>
+    <?php endif; ?>
+<?php endif; ?>   
      
 <?php
 // Rezept-Grunddaten
