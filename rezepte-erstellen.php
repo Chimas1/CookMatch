@@ -4,9 +4,7 @@ require_once 'Database.php';
     $db = new Database();
     $db->connect();
 
-    $stmt = $db->select("SELECT * FROM Lebensmittel","",[]);
-
-    print_r($stmt);
+    $lebensmittel = $db->select("SELECT * FROM Lebensmittel","",[]);
 ?>
 <h2>Rezept erstellen</h2>
 <form method="POST" >
@@ -20,7 +18,11 @@ require_once 'Database.php';
 
     <label>Zutaten (mehre mit STRG wählen):<br>
         <select name="Zutaten" multiple>
-            <option value="volvo">Volvo</option>
+            <?php
+                while ($row = $lebensmittel->fetch_assoc())
+                    echo "<option value='$row'>'$row'</option>";
+            ?>
+            
         </select>
         <textarea name="Zutaten" required></textarea>
     </label><br><br>
