@@ -4,8 +4,8 @@ require_once 'Database.php';
 session_start();
 
 // Prüfen, ob der Nutzer eingeloggt ist
-if (isset($_GET['user'])) {
-    $profilBenutzername = $_GET['user'];
+if (isset($_GET['Benutzername'])) {
+    $profilBenutzername = $_GET['Benutzername'];
 } elseif (isset($_SESSION['userid'])) {
     $profilBenutzername = $_SESSION['userid'];
 } else {
@@ -17,11 +17,12 @@ if (isset($_GET['user'])) {
 $db = new Database();
 $db->connect();
 
-$result = $db->select("SELECT Profilbild, Benutzername, `E-Mail` FROM Nutzer WHERE Benutzername = ?", "s" ,  $userid);
+$userid = $_SESSION['userid'];
+$result = $db->select("SELECT Profilbild, Benutzername, `E-Mail` FROM Nutzer WHERE Benutzername = ?", "s" ,  $profilBenutzername);
 $row = $result->fetch_assoc();
 
 
-if (isset($_POST['update'])) {
+if ($userid == $profilBenutzername && isset($_POST['update'])) {
     $neuerBenutzername = trim($_POST['benutzername']);
 
     // Prüfen, ob der neue Benutzername 

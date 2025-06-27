@@ -23,7 +23,7 @@ if (!isset($_SESSION['userid'])) {
     <p>
        <a href="rezepte-suchen.php"style="color:black;">Zu den Rezepten</a> <br/>
         <a href="Nutzer.php"style="color:black;">Zum Profil</a> <br/>
-        <a href="rezepte-anzeigen.php?Name=Pizza"style="color:black;">Pizza</a> <br/>
+        <a href="rezepte-anzeigen.php?name=Pizza"style="color:black;">Pizza</a> <br/>
         <a href="Favoriten.php"style="color:black;">Zu deinen Favoriten</a> <br/>
     </p>
     <form action="logout.php" method="post" style="display: inline;">
