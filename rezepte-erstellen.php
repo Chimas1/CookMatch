@@ -1,3 +1,13 @@
+<?php
+require_once 'Database.php';
+
+    $db = new Database();
+    $db->connect();
+
+    $stmt = $db->select("SELECT * FROM Lebensmittel","",[]);
+
+    print_r($stmt);
+?>
 <h2>Rezept erstellen</h2>
 <form method="POST" >
     <label>Name des Rezepts:<br>
@@ -8,7 +18,10 @@
         <textarea name="Beschreibung" required></textarea>
     </label><br><br>
 
-    <label>Zutaten (je Zeile eine Zutat):<br>
+    <label>Zutaten (mehre mit STRG wählen):<br>
+        <select name="Zutaten" multiple>
+            <option value="volvo">Volvo</option>
+        </select>
         <textarea name="Zutaten" required></textarea>
     </label><br><br>
 
@@ -50,7 +63,7 @@
 </form>
 
 <?php
-require_once 'Database.php';
+
 print_r($_POST);
 // Formularverarbeitung nach dem Absenden
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -63,10 +76,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Herkunft      = isset($_POST["herkunft"]) ? htmlspecialchars($_POST["herkunft"]) : '';
     $Zeit          = isset($_POST["zeit"]) ? htmlspecialchars($_POST["zeit"]) : '';
 
-    $db = new Database();
-    $db->connect();
+
+    //TODO Prüfe ob Rezept schon exisitert
+    $db->select("SELECT Name from Rezept WHERE Name = ?", "s", [$Name]);
+
     $stmt = $db->insert("INSERT INTO Rezept(Name,Herkunft,Gang,Schwierigkeit,Ernährungsweise) VALUES (?,?,?,?,?)", "sssis", [$Name, $Herkunft, $Gang, $Schwierigkeit, $Ernaehrung]);
-    print_r($stmt);
+
 
     echo "<h2>Rezept erstellt!</h2>";
     echo "<strong>Name:</strong> $Name<br>";
