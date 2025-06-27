@@ -40,10 +40,10 @@ if (isset($_POST['update'])) {
         }
 
         // Update in der Datenbank
-        $updateStmt = $db->select(
+        $updateStmt = $db->insert(
             "UPDATE Nutzer SET Benutzername = ?, Profilbild = ? WHERE Benutzername = ?",
             "sss",
-            $neuerBenutzername, $profilbildPfad, $userid
+            [$neuerBenutzername, $profilbildPfad, $userid]
         );
 
         // Username in der Session aktualisieren
