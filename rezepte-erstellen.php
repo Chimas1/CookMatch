@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<h2>Rezept erstellen (auch für externe Nutzer)</h2>
+<h2>Rezept erstellen</h2>
 <form method="POST">
     <label>Name des Rezepts:<br>
         <input type="text" name="name" required>
