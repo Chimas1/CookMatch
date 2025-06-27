@@ -23,7 +23,7 @@ if (isset($_POST['update'])) {
 
     // Prüfen, ob der neue Benutzername 
         $result = $db->select("SELECT Benutzername FROM Nutzer WHERE `Benutzername` = ?", "s", $neuerBenutzername);
-        if(!$result->num_rows > 0) {
+        if($result->num_rows > 0) {
             echo "Benutzername existiert bereits!";
     } else {
         // Profilbild-Upload
