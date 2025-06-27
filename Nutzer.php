@@ -99,14 +99,12 @@ if ($userid == $profilBenutzername && isset($_POST['update'])) {
         <?php endif; ?>        <div class="profil-name"><?php echo htmlspecialchars($row['Benutzername']); ?></div>
         <div class="profil-email"><?php echo htmlspecialchars($row['E-Mail']); ?></div>
     </div>
-    <form method="post" enctype="multipart/form-data">
        <form method="post" enctype="multipart/form-data">
         <label for="benutzername">Benutzername:</label>
         <input type="text" name="benutzername" id="benutzername" value="<?php echo htmlspecialchars($row['Benutzername']); ?>" required><br>
         <label for="profilbild">Profilbild ändern:</label>
         <input type="file" name="profilbild" id="profilbild" accept="image/*"><br>
         <button type="submit" name="update">Änderungen speichern</button>
-           </form>
 
     </form>
     <a href="index.php">Zurück zur Startseite
