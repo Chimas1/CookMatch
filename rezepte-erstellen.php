@@ -1,14 +1,3 @@
-<?php
-    $name;          
-    $beschreibung;  
-    $lebensmittel; 
-    $gang;         
-    $schwierigkeit; 
-    $ernaehrung;    
-    $herkunft;      
-    $zeit;
-?>
-    
 <h2>Rezept erstellen</h2>
 <form method="POST">
     <label>Name des Rezepts:<br>
@@ -63,14 +52,14 @@
 <?php
 // Formularverarbeitung nach dem Absenden
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name          = isset($_POST["Name"]) ? htmlspecialchars($_POST["Name"]) : '';
-    $beschreibung  = isset($_POST["Beschreibung"]) ? htmlspecialchars($_POST["Beschreibung"]) : '';
-    $lebensmittel  = isset($_POST["Lebensmittel"]) ? htmlspecialchars($_POST["Lebensmittel"]) : '';
-    $gang          = isset($_POST["Gang"]) ? htmlspecialchars($_POST["Gang"]) : '';
-    $schwierigkeit = isset($_POST["Schwierigkeit"]) ? htmlspecialchars($_POST["Schwierigkeit"]) : '';
-    $ernaehrung    = isset($_POST["Ernaehrungsweise"]) ? htmlspecialchars($_POST["Ernaehrungsweise"]) : '';
-    $herkunft      = isset($_POST["Herkunft"]) ? htmlspecialchars($_POST["Herkunft"]) : '';
-    $zeit          = isset($_POST["Zeit"]) ? htmlspecialchars($_POST["Zeit"]) : '';
+    $Name          = isset($_POST["Name"]) ? htmlspecialchars($_POST["Name"]) : '';
+    $Beschreibung  = isset($_POST["Beschreibung"]) ? htmlspecialchars($_POST["Beschreibung"]) : '';
+    $Lebensmittel  = isset($_POST["Lebensmittel"]) ? htmlspecialchars($_POST["Lebensmittel"]) : '';
+    $Gang          = isset($_POST["Gang"]) ? htmlspecialchars($_POST["Gang"]) : '';
+    $Schwierigkeit = isset($_POST["Schwierigkeit"]) ? htmlspecialchars($_POST["Schwierigkeit"]) : '';
+    $Ernaehrung    = isset($_POST["Ernaehrungsweise"]) ? htmlspecialchars($_POST["Ernaehrungsweise"]) : '';
+    $Herkunft      = isset($_POST["Herkunft"]) ? htmlspecialchars($_POST["Herkunft"]) : '';
+    $Zeit          = isset($_POST["Zeit"]) ? htmlspecialchars($_POST["Zeit"]) : '';
 
     echo "<h2>Rezept erstellt!</h2>";
     echo "<strong>Name:</strong> $Name<br>";
