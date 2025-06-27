@@ -17,7 +17,7 @@ if (isset($_GET['user'])) {
 $db = new Database();
 $db->connect();
 
-$result = $db->select("SELECT Profilbild, Benutzername, `E-Mail` FROM Nutzer WHERE Benutzername = ?", "s" ,  $userid);
+$result = $db->select("SELECT Profilbild, Benutzername, `E-Mail` FROM Nutzer WHERE Benutzername = ?", "s" ,  $profilBenutzername);
 $row = $result->fetch_assoc();
 
 
