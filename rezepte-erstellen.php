@@ -26,7 +26,6 @@ require_once 'Database.php';
             ?>
             
         </select>
-        <textarea name="Zutaten" required></textarea>
     </label><br><br>
 
     <label>Gang:<br>
