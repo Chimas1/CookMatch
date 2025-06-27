@@ -49,7 +49,7 @@ function query($query_string)
   {
     if(strlen($binder) == 0) {
       $stmt = $this->query($query_string);
-      return  mysqli_num_rows($stmt) > 0 ? $stmt->fetch_assoc() : "No Results";
+      return  mysqli_num_rows($stmt) > 0 ? $stmt : "No Results";
     }
     $stmt = $this->preparedStm($query_string, $binder, $value);
     /* execute query */
