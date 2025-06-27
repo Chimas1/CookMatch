@@ -50,6 +50,7 @@
 </form>
 
 <?php
+require_once 'Database.php';
 print_r($_POST);
 // Formularverarbeitung nach dem Absenden
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
