@@ -4,16 +4,19 @@ require_once 'Database.php';
 session_start();
 
 // Prüfen, ob der Nutzer eingeloggt ist
-if (!isset($_SESSION['userid'])) {
+if (isset($_GET['user'])) {
+    $profilBenutzername = $_GET['user'];
+} elseif (isset($_SESSION['userid'])) {
+    $profilBenutzername = $_SESSION['userid'];
+} else {
     echo "Bitte zuerst einloggen.";
     echo '<a href="login.php">Bitte einloggen</a>';
-
+    exit;
 }
 
 $db = new Database();
 $db->connect();
 
-$userid = $_SESSION['userid'];
 $result = $db->select("SELECT Profilbild, Benutzername, `E-Mail` FROM Nutzer WHERE Benutzername = ?", "s" ,  $userid);
 $row = $result->fetch_assoc();
 
@@ -95,12 +98,15 @@ if (isset($_POST['update'])) {
         <?php endif; ?>        <div class="profil-name"><?php echo htmlspecialchars($row['Benutzername']); ?></div>
         <div class="profil-email"><?php echo htmlspecialchars($row['E-Mail']); ?></div>
     </div>
+    <form method="post" enctype="multipart/form-data">
        <form method="post" enctype="multipart/form-data">
         <label for="benutzername">Benutzername:</label>
         <input type="text" name="benutzername" id="benutzername" value="<?php echo htmlspecialchars($row['Benutzername']); ?>" required><br>
         <label for="profilbild">Profilbild ändern:</label>
         <input type="file" name="profilbild" id="profilbild" accept="image/*"><br>
         <button type="submit" name="update">Änderungen speichern</button>
+           </form>
+
     </form>
     <a href="index.php">Zurück zur Startseite
 </body>
