@@ -47,7 +47,6 @@ if (!empty($name)) {
   style="background-color:#FFA500;">
     <div class="container">
 
-//Suche überprüfen
    <?php if (!empty($name) && isset($result)): ?>
     <h2>Suchergebnisse:</h2>
     <?php if ($result->num_rows > 0): ?>
