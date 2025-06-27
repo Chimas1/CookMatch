@@ -25,6 +25,7 @@ if (isset($_POST['update'])) {
         $result = $db->select("SELECT Benutzername FROM Nutzer WHERE `Benutzername` = ?", "s", $neuerBenutzername);
         if($result->num_rows > 0) {
             echo "Benutzername existiert bereits!";
+            echo '<br><a href="Nutzer.php">Zurück zum Nutzerprofil</a>';
             exit;
     } 
         $profilbildPfad = $row['Profilbild']; // Standard: altes Bild behalten
