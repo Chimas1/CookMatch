@@ -1,19 +1,19 @@
 <h2>Rezept erstellen</h2>
 <form method="POST">
     <label>Name des Rezepts:<br>
-        <input type="text" name="name" required>
+        <input type="text" name="Name" required>
     </label><br><br>
 
     <label>Beschreibung:<br>
-        <textarea name="beschreibung" required></textarea>
+        <textarea name="Beschreibung" required></textarea>
     </label><br><br>
 
     <label>Zutaten (je Zeile eine Zutat):<br>
-        <textarea name="zutaten" required></textarea>
+        <textarea name="Zutaten" required></textarea>
     </label><br><br>
 
     <label>Gang:<br>
-        <select name="gang" required>
+        <select name="Gang" required>
             <option value="Vorspeise">Vorspeise</option>
             <option value="Hauptgericht">Hauptgericht</option>
             <option value="Dessert">Dessert</option>
@@ -21,7 +21,7 @@
     </label><br><br>
 
     <label>Schwierigkeit:<br>
-        <select name="schwierigkeit" required>
+        <select name="Schwierigkeit" required>
             <option value="Einfach">Einfach</option>
             <option value="Mittel">Mittel</option>
             <option value="Schwierig">Schwierig</option>
@@ -29,7 +29,7 @@
     </label><br><br>
 
     <label>Ernährungsweise:<br>
-        <select name="ernaehrung" required>
+        <select name="Ernaehrung" required>
             <option value="Vegetarisch">Vegetarisch</option>
             <option value="Vegan">Vegan</option>
             <option value="Fleisch">Fleisch</option>
@@ -39,11 +39,11 @@
     </label><br><br>
 
     <label>Herkunft:<br>
-        <input type="text" name="herkunft" required>
+        <input type="text" name="Herkunft" required>
     </label><br><br>
 
     <label>Zeit (in Minuten):<br>
-        <input type="number" name="zeit" min="1" required>
+        <input type="number" name="Zeit" min="1" required>
     </label><br><br>
 
     <button type="submit">Rezept absenden</button>
