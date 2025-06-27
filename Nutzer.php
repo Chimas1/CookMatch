@@ -110,6 +110,7 @@ if ($userid == $profilBenutzername && isset($_POST['update'])) {
   <?php endif; ?>
 
     </form>
-    <a href="index.php">Zurück zur Startseite
+    <a href="index.php">Zurück zur Startseite </a>
+    <a href="Nutzersuchen.php">Zur Nutzersuche</a>
 </body>
 </html>
