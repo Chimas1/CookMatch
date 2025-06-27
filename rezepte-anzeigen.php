@@ -9,19 +9,24 @@ $id = htmlspecialchars($_GET['Name']); // immer validieren!
 // SQL-Abfrage vorbereiten
 $db = new Database();
 $conn = $db->connect();
-?>
 
-<?php
-$name = "";
-if (isset($_GET['name'])) {
-    $name = $_GET['name'];
-}
+$name = isset($_GET['name']) ? $_GET['name'] : '';
 
-$result = null;
+$rezeptDetails = null;
+$suchErgebnisse = null;
+
 if (!empty($name)) {
+    // Alle Rezepte suchen, die ähnlich heißen
     $name_esc = $conn->real_escape_string($name);
     $sql = "SELECT name FROM Rezept WHERE name LIKE '%$name_esc%'";
-    $result = $conn->query($sql);
+    $suchErgebnisse = $conn->query($sql);
+
+    // Prüfen, ob ein exakt passendes Rezept existiert
+    $sqlDetail = "SELECT * FROM Rezept WHERE name = '$name_esc'";
+    $detailsRes = $conn->query($sqlDetail);
+    if ($detailsRes && $detailsRes->num_rows === 1) {
+        $rezeptDetails = $detailsRes->fetch_assoc();
+    }
 }
 ?>
  
@@ -47,22 +52,27 @@ if (!empty($name)) {
   style="background-color:#FFA500;">
     <div class="container">
 
-   <?php if (!empty($name) && isset($result)): ?>
-    <h2>Suchergebnisse:</h2>
-    <?php if ($result->num_rows > 0): ?>
-        <ul>
-        <?php while ($row = $result->fetch_assoc()): ?>
-            <li>
-                <a href="rezepte-anzeigen.php?name=<?php echo urlencode($row['name']); ?>">
-                    <?php echo htmlspecialchars($row['name']); ?>
-                </a>
-            </li>
-        <?php endwhile; ?>
-        </ul>
-    <?php else: ?>
-        <p>Kein Rezept unter diesem Namen gefunden.</p>
-    <?php endif; ?>
-<?php endif; ?>   
+<?php
+if (!empty($name)) {
+    // Falls Detailansicht möglich: Details anzeigen
+    if ($rezeptDetails) {
+        echo '<h2>' . htmlspecialchars($rezeptDetails['name']) . '</h2>';
+        // ... hier kommt deine Detailanzeige!
+    }
+    // Sonst, falls Trefferliste: Liste anzeigen
+    elseif ($suchErgebnisse && $suchErgebnisse->num_rows > 0) {
+        echo '<h2>Suchergebnisse:</h2><ul>';
+        while ($row = $suchErgebnisse->fetch_assoc()) {
+            echo '<li><a href="rezepte-anzeigen.php?name=' . urlencode($row['name']) . '">' . htmlspecialchars($row['name']) . '</a></li>';
+        }
+        echo '</ul>';
+    }
+    // Sonst: Keine Treffer
+    else {
+        echo '<p>Kein Rezept unter diesem Namen gefunden.</p>';
+    }
+}
+?> 
      
 <?php
 // Rezept-Grunddaten
