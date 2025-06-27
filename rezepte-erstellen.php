@@ -52,14 +52,14 @@
 <?php
 // Formularverarbeitung nach dem Absenden
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = htmlspecialchars($_POST["Name"]);
-    $beschreibung = htmlspecialchars($_POST["Beschreibung"]);
-    $zutaten = htmlspecialchars($_POST["Lebensmittel"]);
-    $gang = htmlspecialchars($_POST["Gang"]);
-    $schwierigkeit = htmlspecialchars($_POST["Schwierigkeit"]);
-    $ernaehrung = htmlspecialchars($_POST["Ernaehrungsweise"]);
-    $herkunft = htmlspecialchars($_POST["Herkunft"]);
-    $zeit = htmlspecialchars($_POST["Zeit"]);
+    $Name = htmlspecialchars($_POST["Name"]);
+    $Beschreibung = htmlspecialchars($_POST["Beschreibung"]);
+    $Zutaten = htmlspecialchars($_POST["Lebensmittel"]);
+    $Gang = htmlspecialchars($_POST["Gang"]);
+    $Schwierigkeit = htmlspecialchars($_POST["Schwierigkeit"]);
+    $Ernaehrung = htmlspecialchars($_POST["Ernaehrungsweise"]);
+    $Herkunft = htmlspecialchars($_POST["Herkunft"]);
+    $Zeit = htmlspecialchars($_POST["Zeit"]);
 
     echo "<h2>Rezept erstellt!</h2>";
     echo "<strong>Name:</strong> $name<br>";
