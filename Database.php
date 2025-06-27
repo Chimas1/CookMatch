@@ -47,6 +47,10 @@ function query($query_string)
   //WICHTIG: Wenn ihr SELECT Anweisungen stellt immer nur EINEN Wert übergeben
   function select($query_string, $binder, $value)
   {
+    if(strlen($binder) == 0) {
+      $stmt = $this->query($query_string);
+      return  mysqli_num_rows($stmt) > 0 ? $stmt->fetch_assoc() : "No Results";
+    }
     $stmt = $this->preparedStm($query_string, $binder, $value);
     /* execute query */
     $stmt->execute();
