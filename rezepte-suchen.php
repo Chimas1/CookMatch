@@ -3,27 +3,31 @@ require_once 'Database.php';
 $db = new Database();
 $conn = $db->connect();
 
-$name = "";
+$name = isset($_GET['name']) ? $_GET['name'] : '';
 
-if (isset($_GET['Name'])) {
-    $name = $_GET['Name'];
-}
+$rezeptDetails = null;
+$suchErgebnisse = null;
 
 if (!empty($name)) {
+    // Alle Rezepte suchen, die ähnlich heißen
     $name_esc = $conn->real_escape_string($name);
     $sql = "SELECT name FROM Rezept WHERE name LIKE '%$name_esc%'";
-    $result = $conn->query($sql);
-    
-}
+    $suchErgebnisse = $conn->query($sql);
 
-$db->disconnect();
+    // Prüfen, ob ein exakt passendes Rezept existiert
+    $sqlDetail = "SELECT * FROM Rezept WHERE name = '$name_esc'";
+    $detailsRes = $conn->query($sqlDetail);
+    if ($detailsRes && $detailsRes->num_rows === 1) {
+        $rezeptDetails = $detailsRes->fetch_assoc();
+    }
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Suche</title>
+    <title>Rezepte suchen</title>
    <div style="position:absolute; top:10px; right:10px;">
 </div>
 </head>
@@ -33,22 +37,29 @@ $db->disconnect();
     <input type="text" name="Name" value="<?php echo htmlspecialchars($name); ?>" placeholder="Rezeptname eingeben">
     <button type="submit">Suchen</button>
 </form>
-<?php if (!empty($name) && isset($result)): ?>
-    <h2>Suchergebnisse:</h2>
-    <?php if ($result->num_rows > 0): ?>
-        <ul>
-        <?php while ($row = $result->fetch_assoc()): ?>
-            <li>
-                <a href="rezepte-anzeigen.php?Name=<?php echo urlencode($row['name']); ?>">
-                    <?php echo htmlspecialchars($row['name']); ?>
-                </a>
-            </li>
-        <?php endwhile; ?>
-        </ul>
-    <?php else: ?>
-        <p>Kein Rezept unter diesem Namen gefunden.</p>
-    <?php endif; ?>
-<?php endif; ?>
+<div class="container">
+<?php
+if (!empty($name)) {
+    // Falls Detailansicht möglich: Details anzeigen
+    if ($rezeptDetails) {
+        echo '<h2>' . htmlspecialchars($rezeptDetails['name']) . '</h2>';
+        // ... hier kommt deine Detailanzeige!
+    }
+    // Sonst, falls Trefferliste: Liste anzeigen
+    elseif ($suchErgebnisse && $suchErgebnisse->num_rows > 0) {
+        echo '<h2>Suchergebnisse:</h2><ul>';
+        while ($row = $suchErgebnisse->fetch_assoc()) {
+            echo '<li><a href="rezepte-anzeigen.php?name=' . urlencode($row['name']) . '">' . htmlspecialchars($row['name']) . '</a></li>';
+        }
+        echo '</ul>';
+    }
+    // Sonst: Keine Treffer
+    else {
+        echo '<p>Kein Rezept unter diesem Namen gefunden.</p>';
+    }
+}
+?>
+</div>
 </body>
 </html>
 
