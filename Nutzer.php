@@ -22,17 +22,9 @@ if (isset($_POST['update'])) {
     $neuerBenutzername = trim($_POST['benutzername']);
 
     // Prüfen, ob der neue Benutzername bereits existiert (außer der eigene)
-        $result = $db->select("SELECT Benutzername FROM Nutzer WHERE `Benutzername` = ?", "s", $benutzername);
-        if($result->num_rows > 0) {
-            die ("Dieser Benutzername ist bereits vergeben <br> <a href='registrieren.php'>Nochmal versuchen</a>");
-            $error = true;
-
-        }
-
-    $stmt = $db->select("SELECT COUNT(*) as cnt FROM Nutzer WHERE Benutzername = ? AND Benutzername != ?", "ss", $neuerBenutzername, $userid);
-    $cntRow = $stmt->fetch_assoc();
-    if ($cntRow['cnt'] > 0) {
-        $fehler = "Benutzername existiert bereits!";
+        $result = $db->select("SELECT Benutzername FROM Nutzer WHERE `Benutzername` = ?", "s", $neuerBenutzername);
+        if(!$result->num_rows > 0) {
+            $fehler = "Benutzername existiert bereits!";
     } else {
         // Profilbild-Upload
         $profilbildPfad = $row['Profilbild']; // Standard: altes Bild behalten
@@ -59,6 +51,7 @@ if (isset($_POST['update'])) {
         // Seite neu laden, damit Änderungen sichtbar sind
         header("Location: Nutzer.php");
         exit;
+    }
     }
     $db->disconnect();
 }
