@@ -50,7 +50,7 @@
 </form>
 
 <?php
-print_r($__POST);
+print_r($_POST);
 // Formularverarbeitung nach dem Absenden
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Name          = isset($_POST["Name"]) ? htmlspecialchars($_POST["Name"]) : '';
