@@ -58,9 +58,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Lebensmittel  = isset($_POST["lebensmittel"]) ? htmlspecialchars($_POST["lebensmittel"]) : '';
     $Gang          = isset($_POST["gang"]) ? htmlspecialchars($_POST["gang"]) : '';
     $Schwierigkeit = isset($_POST["schwierigkeit"]) ? htmlspecialchars($_POST["schwierigkeit"]) : '';
-    $Ernaehrung    = isset($_POST["ernaehrungsweise"]) ? htmlspecialchars($_POST["ernaehrungsweise"]) : '';
+    $Ernaehrung    = isset($_POST["ernaehrung"]) ? htmlspecialchars($_POST["ernaehrung"]) : '';
     $Herkunft      = isset($_POST["herkunft"]) ? htmlspecialchars($_POST["herkunft"]) : '';
     $Zeit          = isset($_POST["zeit"]) ? htmlspecialchars($_POST["zeit"]) : '';
+
+    $db = new Database();
+    $db->connect();
+    $stmt = $db->insert("INSERT INTO Rezept(Name,Herkunft,Gang,Schwierigkeit,Ernährungsweise) VALUES (?,?,?,?,?)", "sssis", [$Name, $Herkunft, $Gang, $Schwierigkeit, $Ernaehrung]);
+    print_r($stmt);
 
     echo "<h2>Rezept erstellt!</h2>";
     echo "<strong>Name:</strong> $Name<br>";
