@@ -36,7 +36,7 @@ if (isset($_POST['update'])) {
             }
             $profilbildPfad = $upload_dir . uniqid() . "_" . $name;
             move_uploaded_file($tmp_name, $profilbildPfad);
-        
+         }
 
         // Update in der Datenbank
         $updateStmt = $db->insert(
@@ -50,7 +50,7 @@ if (isset($_POST['update'])) {
         // Seite neu laden, damit Änderungen sichtbar sind
         header("Location: Nutzer.php");
         exit;
-    }
+   
     }
     $db->disconnect();
 
