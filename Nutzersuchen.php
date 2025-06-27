@@ -9,5 +9,21 @@ if (!isset($_SESSION['userid'])) {
 
 $db = new Database();
 $db->connect();
-    
+
 ?>
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Benutzersuche</title>
+</head>
+<body>
+    <form action="Nutzersuchen.php" method="get">
+        <input type="text" name="suche" placeholder="Benutzer suchen">
+        <button type="submit">Suchen</button>
+    </form>
+    <br>
+    <a href="Nutzer.php">Zurück zum Profil</a>
+</body>
+</html>
