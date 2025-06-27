@@ -45,11 +45,6 @@ if (!empty($name)) {
     <div class="container">
 
 //Suche überprüfen
-<form method="get" action="rezepte-anzeigen.php">
-        <input type="text" name="Name" value="<?php echo htmlspecialchars($name); ?>" placeholder="Rezeptname eingeben">
-        <button type="submit">Suchen</button>
-    </form>
-
     <?php if (!empty($name) && isset($result)): ?>
         <h2>Suchergebnisse:</h2>
         <?php if ($result->num_rows > 0): ?>
