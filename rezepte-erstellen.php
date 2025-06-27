@@ -1,3 +1,29 @@
+<?php
+// Formularverarbeitung nach dem Absenden
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $Name = htmlspecialchars($_POST["Name"]);
+    $Beschreibung = htmlspecialchars($_POST["Beschreibung"]);
+    $Zutaten = htmlspecialchars($_POST["Lebensmittel"]);
+    $Gang = htmlspecialchars($_POST["Gang"]);
+    $Schwierigkeit = htmlspecialchars($_POST["Schwierigkeit"]);
+    $Ernaehrung = htmlspecialchars($_POST["Ernaehrungsweise"]);
+    $Herkunft = htmlspecialchars($_POST["Herkunft"]);
+    $Zeit = htmlspecialchars($_POST["Zeit"]);
+
+    echo "<h2>Rezept erstellt!</h2>";
+    echo "<strong>Name:</strong> $name<br>";
+    echo "<strong>Beschreibung:</strong> $beschreibung<br>";
+    echo "<strong>Zutaten:</strong> <pre>$zutaten</pre>";
+    echo "<strong>Gang:</strong> $gang<br>";
+    echo "<strong>Schwierigkeit:</strong> $schwierigkeit<br>";
+    echo "<strong>Ernährungsweise:</strong> $ernaehrung<br>";
+    echo "<strong>Herkunft:</strong> $herkunft<br>";
+    echo "<strong>Zeit:</strong> $zeit Minuten<br>";
+    echo "<hr>";
+}
+?>
+
+
 <h2>Rezept erstellen</h2>
 <form method="POST">
     <label>Name des Rezepts:<br>
@@ -48,28 +74,3 @@
 
     <button type="submit">Rezept absenden</button>
 </form>
-
-<?php
-// Formularverarbeitung nach dem Absenden
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $Name = htmlspecialchars($_POST["Name"]);
-    $Beschreibung = htmlspecialchars($_POST["Beschreibung"]);
-    $Zutaten = htmlspecialchars($_POST["Lebensmittel"]);
-    $Gang = htmlspecialchars($_POST["Gang"]);
-    $Schwierigkeit = htmlspecialchars($_POST["Schwierigkeit"]);
-    $Ernaehrung = htmlspecialchars($_POST["Ernaehrungsweise"]);
-    $Herkunft = htmlspecialchars($_POST["Herkunft"]);
-    $Zeit = htmlspecialchars($_POST["Zeit"]);
-
-    echo "<h2>Rezept erstellt!</h2>";
-    echo "<strong>Name:</strong> $name<br>";
-    echo "<strong>Beschreibung:</strong> $beschreibung<br>";
-    echo "<strong>Zutaten:</strong> <pre>$zutaten</pre>";
-    echo "<strong>Gang:</strong> $gang<br>";
-    echo "<strong>Schwierigkeit:</strong> $schwierigkeit<br>";
-    echo "<strong>Ernährungsweise:</strong> $ernaehrung<br>";
-    echo "<strong>Herkunft:</strong> $herkunft<br>";
-    echo "<strong>Zeit:</strong> $zeit Minuten<br>";
-    echo "<hr>";
-}
-?>
