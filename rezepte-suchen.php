@@ -1,10 +1,10 @@
 <?php
 require_once 'Database.php';
+
 $db = new Database();
 $conn = $db->connect();
 
 $name = isset($_GET['name']) ? $_GET['name'] : '';
-
 $rezeptDetails = null;
 $suchErgebnisse = null;
 
@@ -33,19 +33,19 @@ if (!empty($name)) {
 </head>
 <body
      style="background-color:#FFA500;">
-  <form method="get" action="rezepte-anzeigen.php">
-    <input type="text" name="Name" value="<?php echo htmlspecialchars($name); ?>" placeholder="Rezeptname eingeben">
+  <form action="rezepte-anzeigen.php" method="get">
+    <input type="text" name="name" placeholder="Rezeptname eingeben">
     <button type="submit">Suchen</button>
 </form>
 <div class="container">
 <?php
 if (!empty($name)) {
-    // Falls Detailansicht möglich: Details anzeigen
+    // Detailansicht bei exaktem Treffer
     if ($rezeptDetails) {
         echo '<h2>' . htmlspecialchars($rezeptDetails['name']) . '</h2>';
-        // ... hier kommt deine Detailanzeige!
+        // ... Details hier anzeigen ...
     }
-    // Sonst, falls Trefferliste: Liste anzeigen
+    // Trefferliste bei unscharfer Suche
     elseif ($suchErgebnisse && $suchErgebnisse->num_rows > 0) {
         echo '<h2>Suchergebnisse:</h2><ul>';
         while ($row = $suchErgebnisse->fetch_assoc()) {
@@ -53,7 +53,7 @@ if (!empty($name)) {
         }
         echo '</ul>';
     }
-    // Sonst: Keine Treffer
+    // Kein Treffer
     else {
         echo '<p>Kein Rezept unter diesem Namen gefunden.</p>';
     }
