@@ -11,14 +11,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Zeit = htmlspecialchars($_POST["Zeit"]);
 
     echo "<h2>Rezept erstellt!</h2>";
-    echo "<strong>Name:</strong> $name<br>";
-    echo "<strong>Beschreibung:</strong> $beschreibung<br>";
-    echo "<strong>Zutaten:</strong> <pre>$zutaten</pre>";
-    echo "<strong>Gang:</strong> $gang<br>";
-    echo "<strong>Schwierigkeit:</strong> $schwierigkeit<br>";
-    echo "<strong>Ernährungsweise:</strong> $ernaehrung<br>";
-    echo "<strong>Herkunft:</strong> $herkunft<br>";
-    echo "<strong>Zeit:</strong> $zeit Minuten<br>";
+    echo "<strong>Name:</strong> $Name<br>";
+    echo "<strong>Beschreibung:</strong> $Beschreibung<br>";
+    echo "<strong>Zutaten:</strong> <pre>$Zutaten</pre>";
+    echo "<strong>Gang:</strong> $Gang<br>";
+    echo "<strong>Schwierigkeit:</strong> $Schwierigkeit<br>";
+    echo "<strong>Ernährungsweise:</strong> $Ernaehrung<br>";
+    echo "<strong>Herkunft:</strong> $Herkunft<br>";
+    echo "<strong>Zeit:</strong> $Zeit Minuten<br>";
     echo "<hr>";
 }
 ?>
