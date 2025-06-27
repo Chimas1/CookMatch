@@ -25,8 +25,7 @@ if (isset($_POST['update'])) {
         $result = $db->select("SELECT Benutzername FROM Nutzer WHERE `Benutzername` = ?", "s", $neuerBenutzername);
         if($result->num_rows > 0) {
             echo "Benutzername existiert bereits!";
-    } else {
-        // Profilbild-Upload
+    } 
         $profilbildPfad = $row['Profilbild']; // Standard: altes Bild behalten
         if (isset($_FILES['profilbild']) && $_FILES['profilbild']['error'] == UPLOAD_ERR_OK) {
             $tmp_name = $_FILES['profilbild']['tmp_name'];
@@ -37,7 +36,7 @@ if (isset($_POST['update'])) {
             }
             $profilbildPfad = $upload_dir . uniqid() . "_" . $name;
             move_uploaded_file($tmp_name, $profilbildPfad);
-        }
+        
 
         // Update in der Datenbank
         $updateStmt = $db->insert(
