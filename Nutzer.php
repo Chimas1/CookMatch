@@ -17,8 +17,45 @@ $userid = $_SESSION['userid'];
 $result = $db->select("SELECT Profilbild, Benutzername, `E-Mail` FROM Nutzer WHERE Benutzername = ?", "s" ,  $userid);
 $row = $result->fetch_assoc();
 
-$db->disconnect();
 
+if (isset($_POST['update'])) {
+    $neuerBenutzername = trim($_POST['benutzername']);
+
+    // Prüfen, ob der neue Benutzername bereits existiert (außer der eigene)
+    $stmt = $db->select("SELECT COUNT(*) as cnt FROM Nutzer WHERE Benutzername = ? AND Benutzername != ?", "ss", $neuerBenutzername, $userid);
+    $cntRow = $stmt->fetch_assoc();
+    if ($cntRow['cnt'] > 0) {
+        $fehler = "Benutzername existiert bereits!";
+    } else {
+        // Profilbild-Upload
+        $profilbildPfad = $row['Profilbild']; // Standard: altes Bild behalten
+        if (isset($_FILES['profilbild']) && $_FILES['profilbild']['error'] == UPLOAD_ERR_OK) {
+            $tmp_name = $_FILES['profilbild']['tmp_name'];
+            $name = basename($_FILES['profilbild']['name']);
+            $upload_dir = "uploads/"; // Stelle sicher, dass der Ordner existiert und beschreibbar ist
+            if (!is_dir($upload_dir)) {
+                mkdir($upload_dir, 0777, true);
+            }
+            $profilbildPfad = $upload_dir . uniqid() . "_" . $name;
+            move_uploaded_file($tmp_name, $profilbildPfad);
+        }
+
+        // Update in der Datenbank
+        $updateStmt = $db->select(
+            "UPDATE Nutzer SET Benutzername = ?, Profilbild = ? WHERE Benutzername = ?",
+            "sss",
+            $neuerBenutzername, $profilbildPfad, $userid
+        );
+
+        // Username in der Session aktualisieren
+        $_SESSION['userid'] = $neuerBenutzername;
+        // Seite neu laden, damit Änderungen sichtbar sind
+        header("Location: Nutzer.php");
+        exit;
+    }
+    $db->disconnect();
+}
+    
 ?>
 
 <!DOCTYPE html>
@@ -57,6 +94,13 @@ $db->disconnect();
         <?php endif; ?>        <div class="profil-name"><?php echo htmlspecialchars($row['Benutzername']); ?></div>
         <div class="profil-email"><?php echo htmlspecialchars($row['E-Mail']); ?></div>
     </div>
+       <form method="post" enctype="multipart/form-data">
+        <label for="benutzername">Benutzername:</label>
+        <input type="text" name="benutzername" id="benutzername" value="<?php echo htmlspecialchars($row['Benutzername']); ?>" required><br>
+        <label for="profilbild">Profilbild ändern:</label>
+        <input type="file" name="profilbild" id="profilbild" accept="image/*"><br>
+        <button type="submit" name="update">Änderungen speichern</button>
+    </form>
     <a href="index.php">Zurück zur Startseite
 </body>
 </html>
