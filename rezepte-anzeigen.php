@@ -9,25 +9,6 @@ $id = htmlspecialchars($_GET['Name']); // immer validieren!
 // SQL-Abfrage vorbereiten
 $db = new Database();
 $conn = $db->connect();
-
-$name = isset($_GET['name']) ? $_GET['name'] : '';
-
-$rezeptDetails = null;
-$suchErgebnisse = null;
-
-if (!empty($name)) {
-    // Alle Rezepte suchen, die ähnlich heißen
-    $name_esc = $conn->real_escape_string($name);
-    $sql = "SELECT name FROM Rezept WHERE name LIKE '%$name_esc%'";
-    $suchErgebnisse = $conn->query($sql);
-
-    // Prüfen, ob ein exakt passendes Rezept existiert
-    $sqlDetail = "SELECT * FROM Rezept WHERE name = '$name_esc'";
-    $detailsRes = $conn->query($sqlDetail);
-    if ($detailsRes && $detailsRes->num_rows === 1) {
-        $rezeptDetails = $detailsRes->fetch_assoc();
-    }
-}
 ?>
  
 <!DOCTYPE html>
@@ -51,28 +32,6 @@ if (!empty($name)) {
 <body
   style="background-color:#FFA500;">
     <div class="container">
-
-<?php
-if (!empty($name)) {
-    // Falls Detailansicht möglich: Details anzeigen
-    if ($rezeptDetails) {
-        echo '<h2>' . htmlspecialchars($rezeptDetails['name']) . '</h2>';
-        // ... hier kommt deine Detailanzeige!
-    }
-    // Sonst, falls Trefferliste: Liste anzeigen
-    elseif ($suchErgebnisse && $suchErgebnisse->num_rows > 0) {
-        echo '<h2>Suchergebnisse:</h2><ul>';
-        while ($row = $suchErgebnisse->fetch_assoc()) {
-            echo '<li><a href="rezepte-anzeigen.php?name=' . urlencode($row['name']) . '">' . htmlspecialchars($row['name']) . '</a></li>';
-        }
-        echo '</ul>';
-    }
-    // Sonst: Keine Treffer
-    else {
-        echo '<p>Kein Rezept unter diesem Namen gefunden.</p>';
-    }
-}
-?> 
      
 <?php
 // Rezept-Grunddaten
