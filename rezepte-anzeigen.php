@@ -5,7 +5,7 @@
  require_once 'Database.php';
 
 // Primärschlüssel aus z. B. URL holen
-$id = htmlspecialchars($_GET['Name']); // immer validieren!
+$id = htmlspecialchars($_GET['name']); // immer validieren!
 // SQL-Abfrage vorbereiten
 $db = new Database();
 $conn = $db->connect();
