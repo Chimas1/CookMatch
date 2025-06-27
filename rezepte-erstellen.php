@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<h2>Rezept erstellt!</h2>";
     echo "<strong>Name:</strong> $Name<br>";
     echo "<strong>Beschreibung:</strong> $Beschreibung<br>";
-    echo "<strong>Zutaten:</strong> <pre>$Zutaten</pre>";
+    echo "<strong>Zutaten:</strong> <pre>$Lebensmittel</pre>";
     echo "<strong>Gang:</strong> $Gang<br>";
     echo "<strong>Schwierigkeit:</strong> $Schwierigkeit<br>";
     echo "<strong>Ernährungsweise:</strong> $Ernaehrung<br>";
