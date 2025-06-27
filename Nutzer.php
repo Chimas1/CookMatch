@@ -4,8 +4,8 @@ require_once 'Database.php';
 session_start();
 
 // Prüfen, ob der Nutzer eingeloggt ist
-if (isset($_GET['user'])) {
-    $profilBenutzername = $_GET['user'];
+if (isset($_GET['Benutzername'])) {
+    $profilBenutzername = $_GET['Benutzername'];
 } elseif (isset($_SESSION['userid'])) {
     $profilBenutzername = $_SESSION['userid'];
 } else {
