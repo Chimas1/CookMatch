@@ -34,7 +34,7 @@ if (!empty($name)) {
 <?php
 if (!empty($name)) {
     // Trefferliste
-    elseif ($suchErgebnisse && $suchErgebnisse->num_rows > 0) {
+    if ($suchErgebnisse && $suchErgebnisse->num_rows > 0) {
         echo '<h2>Suchergebnisse:</h2><ul>';
         while ($row = $suchErgebnisse->fetch_assoc()) {
             echo '<li><a href="rezepte-anzeigen.php?name=' . urlencode($row['name']) . '">' . htmlspecialchars($row['name']) . '</a></li>';
