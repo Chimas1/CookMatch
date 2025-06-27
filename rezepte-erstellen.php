@@ -19,8 +19,10 @@ require_once 'Database.php';
     <label>Zutaten (mehre mit STRG wählen):<br>
         <select name="Zutaten" multiple>
             <?php
-                while ($row = $lebensmittel->fetch_assoc())
-                    echo "<option value='$row'>'$row'</option>";
+                while ($row = $lebensmittel->fetch_assoc()) {
+                    $l = $row["Bezeichnung"];
+                    echo "<option value='$l'>'$l'</option>";
+                }
             ?>
             
         </select>
